@@ -15,7 +15,7 @@ def draw_tree(t):
         for branch in age:
             draw_branch(branch)
 
-for i in range(15):
+for i in range(10):
     bin_tree.grow()
 
 draw_tree(bin_tree)

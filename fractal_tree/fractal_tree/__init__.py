@@ -72,10 +72,9 @@ class SymetricTree(Tree):
         self.comp = complexity
         self.branch_angle = branch_angle
 
-class BinaryTree(Tree):
+class BinaryTree(SymetricTree):
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
-        Tree.__init__(self, x, y, length, scale)
-        self.branch_angle = branch_angle
+        SymetricTree.__init__(self, x, y, length, scale, 2, branch_angle)
         self.shift_angle = shift_angle
 
     def get_branch_length(self, age=None):

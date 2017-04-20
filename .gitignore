@@ -1,5 +1,2 @@
-fractal_tree/fractal_tree/__pycache__/
-doc/_build/
-doc/_static/
-doc/_Makefile/
-*.pyc
+__pycache__/
+docs/_build/

@@ -1,7 +1,7 @@
 """
 Module for creating fractal trees
 """
-from math import *
+from math import cos, sin, acos, sqrt
 
 class Node:
     """A Node"""
@@ -82,13 +82,13 @@ class PolyTree(Tree):
         if age is None:
             age = self.age
 
-        return (int(pow(self.comp, age+1)) - 1) / (age - 1)
+        return (pow(self.comp, age+1) - 1) / (age - 1)
 
     def get_branch_age_number(self, age=None):
         if age is None:
             age = self.age
 
-        return int(pow(self.comp, age))
+        return pow(self.comp, age)
 
     def get_total_angle(self, branch):
         return branch.get_angle() + self.branch_angle

@@ -10,7 +10,7 @@ class Node:
         self.y = y
 
     def make_new_node(self, length, angle):
-        """"""
+        """Make a new one from an existing one"""
         return Node(cos(-angle)*length+self.x,
                     sin(-angle)*length+self.y)
 
@@ -30,9 +30,11 @@ class Branch:
         self.end_node = end_node
 
     def get_dx(self):
+        """Get the distance beetween the x-coordinates"""
         return self.start_node.x - self.end_node.x
 
     def get_dy(self):
+        """Get the distance beetween the y-coordinates"""
         return self.start_node.y - self.end_node.y
 
     def get_length(self):
@@ -40,7 +42,7 @@ class Branch:
         return sqrt(self.get_dx()**2 + self.get_dy()**2)
 
     def get_angle(self):
-        """"""
+        """Get angle beetween the branch and the horizont"""
         #TODO: Fix THIS!
         return acos(self.get_dx() / self.get_length())
 

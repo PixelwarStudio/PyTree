@@ -72,22 +72,25 @@ class SymetricTree(Tree):
         self.comp = complexity
         self.branch_angle = branch_angle
 
+    def get_branch_length(self, age=None):
+        if age is None:
+            age = self.age
+
+        return self.length * pow(self.scale, age)
+
+    def get_branch_number(self, age=None):
+        if age is None:
+            age = self.age
+
+        return (int(pow(self.comp, age+1)) - 1) / (age - 1)
+
+    def get_branch_age_number(self, age):
+        return int(pow(self.comp, age))
+
 class BinaryTree(SymetricTree):
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
         SymetricTree.__init__(self, x, y, length, scale, 2, branch_angle)
         self.shift_angle = shift_angle
-
-    def get_branch_length(self, age=None):
-        if age:
-            return self.length * pow(self.scale, age)
-        else:
-            return self.length * pow(self.scale, self.age)
-
-    def get_branch_number(self):
-        return int(pow(2, self.age+1)) - 1
-
-    def get_branch_age_number(self, age):
-        return int(pow(2, age))
 
     def grow(self):
         self.branches.append([])

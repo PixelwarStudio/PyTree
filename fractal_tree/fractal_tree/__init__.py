@@ -15,11 +15,11 @@ class Node:
                     sin(-angle)*length+self.y)
 
     def copy(self):
-        """Copy a Point"""
+        """Copy a Node"""
         return Node(self.x, self.y)
 
     def move(self, dx, dy):
-        """Move the point"""
+        """Move the node"""
         self.x += dx
         self.y += dy
 
@@ -47,7 +47,7 @@ class Branch:
         return acos(self.get_dx() / self.get_length())
 
 class Tree:
-    """The fractal tree"""
+    """The standard tree"""
     def __init__(self, x, y, length, scale):
         self.x = x
         self.y = y
@@ -66,7 +66,7 @@ class Tree:
         """Let the tree grow"""
         self.age += 1
 
-class SymetricTree(Tree):
+class PolyTree(Tree):
     def __init__(self, x, y, length, scale, complexity, branch_angle):
         Tree.__init__(self, x, y, length, scale)
         self.comp = complexity
@@ -84,22 +84,23 @@ class SymetricTree(Tree):
 
         return (int(pow(self.comp, age+1)) - 1) / (age - 1)
 
-    def get_branch_age_number(self, age):
+    def get_branch_age_number(self, age=None):
+        if age is None:
+            age = self.age
+
         return int(pow(self.comp, age))
 
-class BinaryTree(SymetricTree):
-    def __init__(self, x, y, length, scale, branch_angle, shift_angle):
-        SymetricTree.__init__(self, x, y, length, scale, 2, branch_angle)
-        self.shift_angle = shift_angle
+    def get_total_angle(self, branch):
+        return branch.get_angle() + self.branch_angle
 
     def grow(self):
         self.branches.append([])
         self.nodes.append([])
 
-        for index in range(self.get_branch_age_number(self.age)):
-            node = self.nodes[self.age][index]
-            branch = self.branches[self.age][index]
-            for n in range(2):
+        for branch in self.branches[self.age]:
+            node = branch.end_node
+            for n in range(self.comp):
+                #TODO: Define a angle method
                 new_node = node.make_new_node(self.get_branch_length(self.age+1),
                                               branch.get_angle()
                                               + self.branch_angle-n*self.branch_angle*2)
@@ -107,4 +108,9 @@ class BinaryTree(SymetricTree):
                 self.branches[self.age+1].append(Branch(node, new_node))
 
         self.age += 1
+
+class BinaryTree(PolyTree):
+    def __init__(self, x, y, length, scale, branch_angle, shift_angle):
+        PolyTree.__init__(self, x, y, length, scale, 2, branch_angle)
+        self.shift_angle = shift_angle
         

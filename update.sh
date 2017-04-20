@@ -3,5 +3,5 @@
 cd fractal_tree
 pip3 install .
 cd ..
-cd doc
+cd docs
 make html

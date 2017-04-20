@@ -1,6 +1,5 @@
 #!/bin/bash
-
-cd fractal_tree
+cd FractalTree
 pip3 install .
 cd ..
 cd docs

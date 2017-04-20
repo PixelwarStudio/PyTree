@@ -67,24 +67,28 @@ class Tree:
         self.age += 1
 
 class PolyTree(Tree):
+    """A symetric tree with multiple branches created per grow step"""
     def __init__(self, x, y, length, scale, complexity, branch_angle):
         Tree.__init__(self, x, y, length, scale)
         self.comp = complexity
         self.branch_angle = branch_angle
 
     def get_branch_length(self, age=None):
+        """Get the length of a branch"""
         if age is None:
             age = self.age
 
         return self.length * pow(self.scale, age)
 
     def get_branch_number(self, age=None):
+        """Get sum of all branches in the tree"""
         if age is None:
             age = self.age
 
         return (pow(self.comp, age+1) - 1) / (age - 1)
 
     def get_branch_age_number(self, age=None):
+        """Get the sum of branches grown in an specific age"""
         if age is None:
             age = self.age
 
@@ -94,6 +98,7 @@ class PolyTree(Tree):
         return branch.get_angle() + self.branch_angle
 
     def grow(self):
+        """Let the tree grow"""
         self.branches.append([])
         self.nodes.append([])
 
@@ -110,6 +115,7 @@ class PolyTree(Tree):
         self.age += 1
 
 class BinaryTree(PolyTree):
+    """A tree with 2 new branches per 1 old branch"""
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
         PolyTree.__init__(self, x, y, length, scale, 2, branch_angle)
         self.shift_angle = shift_angle

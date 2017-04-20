@@ -70,7 +70,7 @@ class BinaryTree(Tree):
         self.branch_angle = branch_angle
         self.shift_angle = shift_angle
 
-    def get_branch_length(self, age):
+    def get_branch_length(self, age=None):
         if age:
             return self.length * pow(self.scale, age)
         else:
@@ -90,7 +90,7 @@ class BinaryTree(Tree):
             node = self.nodes[self.age][index]
             branch = self.branches[self.age][index]
             for n in range(2):
-                new_node = node.make_new_node(self.get_branch_length(),
+                new_node = node.make_new_node(self.get_branch_length(self.age+1),
                                               branch.get_angle()
                                               + self.branch_angle-n*self.branch_angle*2)
                 self.nodes[self.age+1].append(new_node)

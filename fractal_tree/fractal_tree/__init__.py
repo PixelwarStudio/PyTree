@@ -112,7 +112,7 @@ class PolyTree(Tree):
                 self.nodes[self.age+1].append(new_node)
                 self.branches[self.age+1].append(Branch(node, new_node))
 
-        self.age += 1
+        Tree.grow(self)
 
 class BinaryTree(PolyTree):
     """A tree with 2 new branches per 1 old branch"""

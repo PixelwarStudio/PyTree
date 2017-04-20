@@ -66,6 +66,12 @@ class Tree:
         """Let the tree grow"""
         self.age += 1
 
+class SymetricTree(Tree):
+    def __init__(self, x, y, length, scale, complexity, branch_angle):
+        Tree.__init__(self, x, y, length, scale)
+        self.comp = complexity
+        self.branch_angle = branch_angle
+
 class BinaryTree(Tree):
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
         Tree.__init__(self, x, y, length, scale)

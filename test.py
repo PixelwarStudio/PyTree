@@ -5,7 +5,7 @@ from FractalTree import PolyTree
 im = Image.new('RGBA', (700, 700)) 
 draw = ImageDraw.Draw(im)
 
-bin_tree = PolyTree(350, 700, 200, 0.9, 1, radians(0), radians(90))
+bin_tree = PolyTree(350, 500, 100, 0.95, 1, radians(0), radians(135))
 
 def draw_node(n):
     draw.point((n.x, n.y))
@@ -18,7 +18,7 @@ def draw_tree(t):
         for branch in age:
             draw_branch(branch)
 
-for i in range(20):
+for i in range(15):
     bin_tree.grow()
 
 draw_tree(bin_tree)

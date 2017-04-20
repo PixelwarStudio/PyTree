@@ -1,7 +1,7 @@
 """
 Module for creating fractal trees
 """
-from math import cos, sin, sqrt, atan2, pi
+from math import cos, sin, sqrt, atan2, pi, log
 
 class Node:
     """A Node"""
@@ -92,6 +92,10 @@ class PolyTree(Tree):
             age = self.age
 
         return pow(self.comp, age)
+
+    def get_steps_branch_len(self, length):
+        """Get, how much steps will needed for a given branch length"""
+        return log(length/self.length, self.scale)
 
     def get_total_angle(self, branch, child_i):
         """Get the total angle"""

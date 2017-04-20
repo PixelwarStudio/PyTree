@@ -1,7 +1,7 @@
 """
 Module for creating fractal trees
 """
-from math import cos, sin, acos, sqrt
+from math import cos, sin, sqrt, atan2, pi
 
 class Node:
     """A Node"""
@@ -13,10 +13,6 @@ class Node:
         """Make a new one from an existing one"""
         return Node(cos(-angle)*length+self.x,
                     sin(-angle)*length+self.y)
-
-    def copy(self):
-        """Copy a Node"""
-        return Node(self.x, self.y)
 
     def move(self, dx, dy):
         """Move the node"""
@@ -43,8 +39,7 @@ class Branch:
 
     def get_angle(self):
         """Get angle beetween the branch and the horizont"""
-        #TODO: Fix THIS!
-        return acos(self.get_dx() / self.get_length())
+        return pi - atan2(self.get_dy(), self.get_dx())
 
 class Tree:
     """The standard tree"""
@@ -68,10 +63,11 @@ class Tree:
 
 class PolyTree(Tree):
     """A symetric tree with multiple branches created per grow step"""
-    def __init__(self, x, y, length, scale, complexity, branch_angle):
+    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
         Tree.__init__(self, x, y, length, scale)
         self.comp = complexity
         self.branch_angle = branch_angle
+        self.shift_angle = shift_angle
 
     def get_branch_length(self, age=None):
         """Get the length of a branch"""
@@ -94,29 +90,23 @@ class PolyTree(Tree):
 
         return pow(self.comp, age)
 
-    def get_total_angle(self, branch):
-        return branch.get_angle() + self.branch_angle
+    def get_total_angle(self, branch, child_i):
+        """Get the total angle"""
+        return (branch.get_angle()
+                + self.branch_angle * ((self.comp-1)/2-child_i)
+                - self.shift_angle)
 
     def grow(self):
         """Let the tree grow"""
         self.branches.append([])
         self.nodes.append([])
 
-        for branch in self.branches[self.age]:
-            node = branch.end_node
-            for n in range(self.comp):
-                #TODO: Define a angle method
-                new_node = node.make_new_node(self.get_branch_length(self.age+1),
-                                              branch.get_angle()
-                                              + self.branch_angle-n*self.branch_angle*2)
+        for parent_branch in self.branches[self.age]:
+            parent_node = parent_branch.end_node
+            for child_i in range(self.comp):
+                new_node = parent_node.make_new_node(self.get_branch_length(self.age+1),
+                                                     self.get_total_angle(parent_branch, child_i))
                 self.nodes[self.age+1].append(new_node)
-                self.branches[self.age+1].append(Branch(node, new_node))
+                self.branches[self.age+1].append(Branch(parent_node, new_node))
 
         Tree.grow(self)
-
-class BinaryTree(PolyTree):
-    """A tree with 2 new branches per 1 old branch"""
-    def __init__(self, x, y, length, scale, branch_angle, shift_angle):
-        PolyTree.__init__(self, x, y, length, scale, 2, branch_angle)
-        self.shift_angle = shift_angle
-        

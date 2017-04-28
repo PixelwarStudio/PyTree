@@ -126,3 +126,23 @@ class Tree:
                 self.branches[self.age+1].append(Branch(parent_node, new_node))
 
         self.age += 1
+
+class SymetricTree(Tree):
+    """A symetric Tree"""
+    def __init__(self, x, y, length, scale, complexity, branch_angle):
+        Tree.__init__(x, y, length, scale, complexity, branch_angle, 0)
+
+class BinaryTree(Tree):
+    """A binary Tree"""
+    def __init__(self, x, y, length, scale, branch_angle, shift_angle):
+        Tree.__init__(x, y, length, scale, 2, branch_angle, shift_angle)
+
+class TernaryTree(Tree):
+    """A ternary Tree"""
+    def __init__(self, x, y, length, scale, branch_angle, shift_angle):
+        Tree.__init__(x, y, length, scale, 3, branch_angle, shift_angle)
+
+class DragonTree(Tree):
+    """"A Dragontree"""
+    def __init__(self, x, y, length, scale, shift_angle):
+        Tree.__init__(x, y, length, scale, 2, pi/2, shift_angle)

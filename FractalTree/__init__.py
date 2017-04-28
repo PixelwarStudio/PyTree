@@ -57,6 +57,24 @@ class Tree:
             [Branch(Node(x, y), Node(x, y - length))]
         ]
 
+    def get_box(self):
+        """Get the coordinates of the box, in which the tree can be putted"""
+        min_x = self.x
+        max_x = self.x
+        min_y = self.y
+        max_y = self.y
+        for age in self.nodes:
+            for node in age:
+                if min_x > node.x:
+                    min_x = node.x
+                if max_x < node.x:
+                    max_x = node.x
+                if min_y > node.y:
+                    min_y = node.y
+                if max_y < node.y:
+                    max_y = node.y
+        return (min_x, min_y, max_x, max_y)
+
     def grow(self):
         """Let the tree grow"""
         self.age += 1

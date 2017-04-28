@@ -3,8 +3,9 @@
 ## Installation
 ### Using Pip
 1. Clone or download the repo and save it where you want
+2. Unzip the folder
 2. Open a terminal in the unzipped folder
-3. type: ```pip3 install .```
+3. type ```pip3 install .```
 ## Usage
 ```python
 import FractalTree

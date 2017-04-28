@@ -43,11 +43,14 @@ class Branch:
 
 class Tree:
     """The standard tree"""
-    def __init__(self, x, y, length, scale):
+    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
         self.x = x
         self.y = y
         self.length = length
         self.scale = scale
+        self.comp = complexity
+        self.branch_angle = branch_angle
+        self.shift_angle = shift_angle
 
         self.age = 0
         self.nodes = [
@@ -74,18 +77,6 @@ class Tree:
                 if max_y < node.y:
                     max_y = node.y
         return (min_x, min_y, max_x, max_y)
-
-    def grow(self):
-        """Let the tree grow"""
-        self.age += 1
-
-class PolyTree(Tree):
-    """A tree with multiple branches created per grow step"""
-    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
-        Tree.__init__(self, x, y, length, scale)
-        self.comp = complexity
-        self.branch_angle = branch_angle
-        self.shift_angle = shift_angle
 
     def get_branch_length(self, age=None):
         """Get the length of a branch"""
@@ -134,4 +125,4 @@ class PolyTree(Tree):
                 self.nodes[self.age+1].append(new_node)
                 self.branches[self.age+1].append(Branch(parent_node, new_node))
 
-        Tree.grow(self)
+        self.age += 1

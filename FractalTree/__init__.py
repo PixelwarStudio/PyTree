@@ -50,6 +50,9 @@ class Tree:
         self.scale = scale
 
         self.age = 0
+        self.nodes = [
+            [Node(x, y - length)]
+        ]
         self.branches = [
             [Branch(Node(x, y), Node(x, y - length))]
         ]
@@ -81,7 +84,7 @@ class PolyTree(Tree):
         if self.comp == 1:
             return age
         else:
-            return (pow(self.comp, age+1) - 1) / (self.comp - 1)
+            return int((pow(self.comp, age+1) - 1) / (self.comp - 1))
 
     def get_branch_age_number(self, age=None):
         """Get the sum of branches grown in an specific age"""
@@ -103,12 +106,14 @@ class PolyTree(Tree):
     def grow(self):
         """Let the tree grow"""
         self.branches.append([])
+        self.nodes.append([])
 
         for parent_branch in self.branches[self.age]:
             parent_node = parent_branch.end_node
             for child_i in range(self.comp):
                 new_node = parent_node.make_new_node(self.get_branch_length(self.age+1),
                                                      self.get_total_angle(parent_branch, child_i))
+                self.nodes[self.age+1].append(new_node)
                 self.branches[self.age+1].append(Branch(parent_node, new_node))
 
         Tree.grow(self)

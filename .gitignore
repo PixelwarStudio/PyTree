@@ -1,3 +1,5 @@
 __pycache__/
 docs/_build/
 update.sh
+dist
+FractalTree.egg-info

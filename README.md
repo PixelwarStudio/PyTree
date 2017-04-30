@@ -6,7 +6,7 @@ The installation requires Python 3.5+ (other versions may work) and pip.
 1. Open Terminal
 2. Type ```pip3 install FractalTree```
 ## Quick Example
-```
+```python
 from math import radians
 from FractalTree import Tree
 

@@ -10,7 +10,7 @@ The installation requires Python 3.5+ (other versions may work) and pip.
 from math import radians
 from FractalTree import Tree
 
-# Creates a Sierpisnkitree
+# Creates a Sierpinskitree
 my_tree = Tree(300, 400, 100, 0.5, 3, radians(120), radians(0))
 # The tree "grows"
 for i in range(10):

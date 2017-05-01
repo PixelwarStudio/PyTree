@@ -112,6 +112,20 @@ class Tree:
                 + self.branch_angle * ((self.comp-1)/2-child_i)
                 - self.shift_angle)
 
+    def get_nodes(self, age=None):
+        """Get nodes of the tree of specific age or all ages"""
+        if age is None:
+            return self.nodes
+        else:
+            return self.nodes[age]
+
+    def get_branches(self, age=None):
+        """Get branches of the tree of specific age or all ages"""
+        if age is None:
+            return self.get_branches
+        else:
+            return self.branches[age]
+
     def grow(self):
         """Let the tree grow"""
         self.branches.append([])

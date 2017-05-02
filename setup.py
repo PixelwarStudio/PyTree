@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="FractalTree",
-    version="0.1b2",
+    version="0.1b3",
     description="A module for creating fractal trees",
     url="https://github.com/PixelwarStudio/PyFractalTree",
     author="Pixelwar",

@@ -2,5 +2,7 @@ __pycache__/
 docs/_build/
 dist
 build
+build.sh
+install.sh
 test.py
 FractalTree.egg-info

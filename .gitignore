@@ -1,4 +1,6 @@
 __pycache__/
 docs/_build/
 dist
+build
+test.py
 FractalTree.egg-info

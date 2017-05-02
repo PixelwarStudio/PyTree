@@ -9,5 +9,5 @@ Welcome to FractalTree's documentation!
 .. toctree::
    :maxdepth: 2
    
-   classes
+   reference
 

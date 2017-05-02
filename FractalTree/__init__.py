@@ -14,6 +14,10 @@ class Node:
         return Node(cos(-angle)*length+self.x,
                     sin(-angle)*length+self.y)
 
+    def get_tuple(self):
+        """Return the position of the node as tuple"""
+        return (self.x, self.y)
+
     def move(self, dx, dy):
         """Move the node"""
         self.x += dx
@@ -41,6 +45,15 @@ class Branch:
         """Get angle beetween the branch and the horizont"""
         return pi - atan2(self.get_dy(), self.get_dx())
 
+    def get_tuple(self):
+        """Return a tuple of start node and end node positions"""
+        return self.start_node.get_tuple() + self.end_node.get_tuple()
+
+    def move(self, dx, dy):
+        """Move the branch"""
+        self.start_node.move(dx, dy)
+        self.end_node.move(dx, dy)
+
 class Tree:
     """The standard tree"""
     def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
@@ -53,11 +66,13 @@ class Tree:
         self.shift_angle = shift_angle
 
         self.age = 0
+
+        first_node = Node(x, y - length)
         self.nodes = [
-            [Node(x, y - length)]
+            [first_node]
         ]
         self.branches = [
-            [Branch(Node(x, y), Node(x, y - length))]
+            [Branch(Node(x, y), first_node)]
         ]
 
     def get_box(self):
@@ -114,17 +129,25 @@ class Tree:
 
     def get_nodes(self, age=None):
         """Get nodes of the tree of specific age or all ages"""
-        if age is None:
-            return self.nodes
-        else:
-            return self.nodes[age]
+        return self.nodes if age is None else self.nodes[age]
 
     def get_branches(self, age=None):
         """Get branches of the tree of specific age or all ages"""
-        if age is None:
-            return self.get_branches
-        else:
-            return self.branches[age]
+        return self.get_branches if age is None else self.branches[age]
+
+    def move(self, dx, dy):
+        """Move the tree"""
+        # Move the tree start position
+        self.x += dx
+        self.y += dy
+
+        # Move all nodes
+        for age in self.nodes:
+            for node in age:
+                node.move(dx, dy)
+
+        # Move all branches
+        self.branches[0][0].start_node.move(dx, dy)
 
     def grow(self):
         """Let the tree grow"""

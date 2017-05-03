@@ -9,17 +9,34 @@ class Node:
         self.x = x
         self.y = y
 
-    def make_new_node(self, length, angle):
-        """Make a new one from an existing one"""
-        return Node(cos(-angle)*length+self.x,
-                    sin(-angle)*length+self.y)
+    def make_new_node(self, distance, angle):
+        """Make a new one from an existing one.
+
+        Args:
+            distance (float): The distance of the original node to the new node.
+            angle (radians): The angle between the old and new node, relative to the horizont.
+
+        Returns:
+            Node: Returns the new node.
+        """
+        return Node(cos(-angle)*distance+self.x,
+                    sin(-angle)*distance+self.y)
 
     def get_tuple(self):
-        """Return the position of the node as tuple"""
+        """Get the position of the node as tuple.
+
+        Returns:
+            Tupel: Contains x- and y-coordinate
+        """
         return (self.x, self.y)
 
     def move(self, dx, dy):
-        """Move the node"""
+        """Move the node.
+
+        Args:
+            dx (float): Delta (Adjustment) of the x-pos.
+            dy (float): Delta (Adjustment) of the y-pos.
+        """
         self.x += dx
         self.y += dy
 
@@ -30,19 +47,35 @@ class Branch:
         self.end_node = end_node
 
     def get_dx(self):
-        """Get the distance beetween the x-coordinates"""
+        """Get the distance beetween the x-coordinates.
+
+        Returns:
+            float: The 
+        """
         return self.start_node.x - self.end_node.x
 
     def get_dy(self):
-        """Get the distance beetween the y-coordinates"""
+        """Get the distance beetween the y-coordinates.
+        
+        Returns:
+            float: 
+        """
         return self.start_node.y - self.end_node.y
 
     def get_length(self):
-        """Get the length of the branch"""
+        """Get the length of the branch.
+        
+        Returns:
+            float: The length of the branch.
+        """
         return sqrt(self.get_dx()**2 + self.get_dy()**2)
 
     def get_angle(self):
-        """Get angle beetween the branch and the horizont"""
+        """Get angle beetween the branch and the horizont
+        
+        Returns:
+            radians: The angle
+        """
         return pi - atan2(self.get_dy(), self.get_dx())
 
     def get_tuple(self):
@@ -134,6 +167,12 @@ class Tree:
     def get_branches(self, age=None):
         """Get branches of the tree of specific age or all ages"""
         return self.get_branches if age is None else self.branches[age]
+
+    def get_nodes_as_tupel(self):
+        pass
+
+    def get_branches_as_tupel(self):
+        pass
 
     def move(self, dx, dy):
         """Move the tree"""

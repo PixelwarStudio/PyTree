@@ -1,4 +1,0 @@
-Classes
-*******
-.. automodule:: FractalTree
-    :members:

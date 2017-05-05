@@ -53,13 +53,12 @@ class Tree:
 
         self.age = 0
 
-        first_node = Node(x, y - length)
         self.nodes = [
-            [first_node]
+            [Node(x, y - length)]
         ]
 
-    def get_box(self):
-        """Get the coordinates of the box, in which the tree can be putted"""
+    def get_rectangle(self):
+        """Get the coordinates of the rectangle, in which the tree can be putted"""
         min_x = self.x
         max_x = self.x
         min_y = self.y
@@ -82,8 +81,12 @@ class Tree:
             age = self.age
 
         return self.length * pow(self.scale, age)
+    
+    def get_steps_branch_len(self, length):
+        """Get, how much steps will needed for a given branch length"""
+        return log(length/self.length, self.scale)
 
-    def get_branch_number(self, age=None):
+    def get_node_number(self, age=None):
         """Get sum of all branches in the tree"""
         if age is None:
             age = self.age
@@ -93,29 +96,33 @@ class Tree:
         else:
             return int((pow(self.comp, age+1) - 1) / (self.comp - 1))
 
-    def get_branch_age_number(self, age=None):
+    def get_node_age_number(self, age=None):
         """Get the sum of branches grown in an specific age"""
         if age is None:
             age = self.age
 
         return pow(self.comp, age)
 
-    def get_steps_branch_len(self, length):
-        """Get, how much steps will needed for a given branch length"""
-        return log(length/self.length, self.scale)
+    def get_nodes(self):
+        nodes = []
+        for age, level in enumerate(self.nodes):
+            nodes.append([])
+            for node in level:
+                nodes[age].append(node.get_tuple())
+        return nodes
 
-    def get_total_angle(self, branch, child_i):
-        """Get the total angle"""
-        return (branch.get_angle()
-                + self.branch_angle * ((self.comp-1)/2-child_i)
-                - self.shift_angle)
+    def get_branches(self):
+        branches = []
+        for age, level in enumerate(self.nodes):
+            branches.append([])
+            for n, node in enumerate(level):
+                if age == 0:
+                    p_node = Node(self.x, self.y)
+                else:
+                    p_node = self.nodes[age-1][int(n / self.comp)]
+                branches[age].append(p_node.get_tuple() + node.get_tuple())
 
-    def get_nodes(self, age=None):
-        """Get nodes of the tree of specific age or all ages"""
-        return self.nodes if age is None else self.nodes[age]
-
-    def get_branches(self, age=None):
-        pass
+        return branches
 
     def move(self, dx, dy):
         """Move the tree"""
@@ -128,17 +135,12 @@ class Tree:
             for node in age:
                 node.move(dx, dy)
 
-        # Move all branches
-
-
     def grow(self):
         """Let the tree grow"""
         self.nodes.append([])
 
-        for n in range(self.get_branch_age_number(self.age)):
-            print(self.age, n)
+        for n, node in enumerate(self.nodes[self.age]):
             node = self.nodes[self.age][n]
-            #print(self.age, n, int(n / self.comp))
             if self.age == 0:
                 p_node = Node(self.x, self.y)
             else:

@@ -7,18 +7,31 @@
 ## Quick Example
 ```python
 from math import radians
+from PIL import Image, ImageDraw
 from FractalTree import Tree
 
-# Creates a Sierpinskitree
-my_tree = Tree(300, 400, 100, 0.5, 3, radians(120), radians(0))
-# The tree "grows"
+# Define dimensions of the pic
+WIDTH = 600
+HEIGHT = 500
+
+# Create a PIL Image
+im = Image.new("RGB", (WIDTH, HEIGHT))
+draw = ImageDraw.Draw(im)
+
+# Create a Sierpinski Tree
+my_tree = Tree(WIDTH / 2, HEIGHT, 100, 0.5, 3, radians(120), radians(0))
+
+# Let the tree grow 
 for i in range(10):
     my_tree.grow()
 
-# Print out the nodes for every age
-for age in my_tree.nodes:
-    for node in age:
-        print(node.x, node.y)
+# Draw the tree
+for age in my_tree.get_branches():
+    for branch in age:
+        draw.line(branch)
+
+# Give out the image
+im.show()
 ```
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

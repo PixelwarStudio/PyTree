@@ -40,53 +40,6 @@ class Node:
         self.x += dx
         self.y += dy
 
-class Branch:
-    """A Branch"""
-    def __init__(self, start_node, end_node):
-        self.start_node = start_node
-        self.end_node = end_node
-
-    def get_dx(self):
-        """Get the distance beetween the x-coordinates.
-
-        Returns:
-            float: The 
-        """
-        return self.start_node.x - self.end_node.x
-
-    def get_dy(self):
-        """Get the distance beetween the y-coordinates.
-        
-        Returns:
-            float: 
-        """
-        return self.start_node.y - self.end_node.y
-
-    def get_length(self):
-        """Get the length of the branch.
-        
-        Returns:
-            float: The length of the branch.
-        """
-        return sqrt(self.get_dx()**2 + self.get_dy()**2)
-
-    def get_angle(self):
-        """Get angle beetween the branch and the horizont
-        
-        Returns:
-            radians: The angle
-        """
-        return pi - atan2(self.get_dy(), self.get_dx())
-
-    def get_tuple(self):
-        """Return a tuple of start node and end node positions"""
-        return self.start_node.get_tuple() + self.end_node.get_tuple()
-
-    def move(self, dx, dy):
-        """Move the branch"""
-        self.start_node.move(dx, dy)
-        self.end_node.move(dx, dy)
-
 class Tree:
     """The standard tree"""
     def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
@@ -103,9 +56,6 @@ class Tree:
         first_node = Node(x, y - length)
         self.nodes = [
             [first_node]
-        ]
-        self.branches = [
-            [Branch(Node(x, y), first_node)]
         ]
 
     def get_box(self):
@@ -165,13 +115,6 @@ class Tree:
         return self.nodes if age is None else self.nodes[age]
 
     def get_branches(self, age=None):
-        """Get branches of the tree of specific age or all ages"""
-        return self.get_branches if age is None else self.branches[age]
-
-    def get_nodes_as_tupel(self):
-        pass
-
-    def get_branches_as_tupel(self):
         pass
 
     def move(self, dx, dy):
@@ -186,20 +129,27 @@ class Tree:
                 node.move(dx, dy)
 
         # Move all branches
-        self.branches[0][0].start_node.move(dx, dy)
+
 
     def grow(self):
         """Let the tree grow"""
-        self.branches.append([])
         self.nodes.append([])
 
-        for parent_branch in self.branches[self.age]:
-            parent_node = parent_branch.end_node
-            for child_i in range(self.comp):
-                new_node = parent_node.make_new_node(self.get_branch_length(self.age+1),
-                                                     self.get_total_angle(parent_branch, child_i))
-                self.nodes[self.age+1].append(new_node)
-                self.branches[self.age+1].append(Branch(parent_node, new_node))
+        for n in range(self.get_branch_age_number(self.age)):
+            print(self.age, n)
+            node = self.nodes[self.age][n]
+            #print(self.age, n, int(n / self.comp))
+            if self.age == 0:
+                p_node = Node(self.x, self.y)
+            else:
+                p_node = self.nodes[self.age-1][int(n / self.comp)]
+            angle = atan2(node.x-p_node.x, node.y-p_node.y) - pi / 2
+            for i in range(self.comp):
+                pos = (self.comp-1)/2 - i
+                tot_angle = angle + self.branch_angle * pos - self.shift_angle
+                self.nodes[self.age+1].append(
+                    node.make_new_node(self.get_branch_length(self.age+1), tot_angle)
+                )
 
         self.age += 1
 

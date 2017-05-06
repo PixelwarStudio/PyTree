@@ -254,6 +254,11 @@ class Tree:
         self.age += 1
 
     def get_node_parent(self, age, pos):
+        """Get the parent node of node, whch is located in tree's node list.
+
+        Returns:
+            object: The parent node.
+        """
         return self.nodes[age][int(pos / self.comp)]
 
 class SymetricTree(Tree):

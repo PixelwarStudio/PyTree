@@ -246,12 +246,15 @@ class Tree:
             angle = node.get_node_angle(p_node)
             for i in range(self.comp):
                 pos = (self.comp-1) / 2 - i
-                tot_angle = angle + self.branch_angle * pos - self.shift_angle
-                self.nodes[self.age+1].append(
-                    node.make_new_node(self.get_branch_length(self.age+1), tot_angle)
-                )
+                tot_angle = self.get_total_angle(angle, pos)
+                length = self.get_branch_length(self.age+1)
+                self.nodes[self.age+1].append(node.make_new_node(length, tot_angle))
 
         self.age += 1
+
+    def get_total_angle(self, angle, pos):
+        """Get the total angle"""
+        return angle + self.branch_angle * pos - self.shift_angle
 
     def get_node_parent(self, age, pos):
         """Get the parent node of node, whch is located in tree's node list.

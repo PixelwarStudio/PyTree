@@ -33,6 +33,14 @@ class Node(object):
         """
         return Node(cos(-angle)*distance+self.x,
                     sin(-angle)*distance+self.y)
+    
+    def get_node_angle(self, node2):
+        """Get the angle beetween 2 nodes relative to the horizont
+
+        Returns:
+            rad: The angle
+        """
+        return atan2(self.x-node2.x, self.y-node2.y) - pi / 2
 
     def get_tuple(self):
         """Get the position of the node as tuple.
@@ -204,7 +212,7 @@ class Tree:
                 if age == 0:
                     p_node = Node(self.x, self.y)
                 else:
-                    p_node = self._get_node_parent(age-1, n)
+                    p_node = self.get_node_parent(age-1, n)
                 branches[age].append(p_node.get_tuple() + node.get_tuple())
 
         return branches
@@ -234,8 +242,8 @@ class Tree:
             if self.age == 0:
                 p_node = Node(self.x, self.y)
             else:
-                p_node = self._get_node_parent(self.age-1, n)
-            angle = self._get_node_angle(node, p_node)
+                p_node = self.get_node_parent(self.age-1, n)
+            angle = node.get_node_angle(p_node)
             for i in range(self.comp):
                 pos = (self.comp-1) / 2 - i
                 tot_angle = angle + self.branch_angle * pos - self.shift_angle
@@ -245,11 +253,8 @@ class Tree:
 
         self.age += 1
 
-    def _get_node_parent(self, age, pos):
+    def get_node_parent(self, age, pos):
         return self.nodes[age][int(pos / self.comp)]
-
-    def _get_node_angle(self, node1, node2):
-        return atan2(node1.x-node2.x, node1.y-node2.y) - pi / 2
 
 class SymetricTree(Tree):
     """A symetric Tree"""

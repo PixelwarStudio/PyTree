@@ -94,8 +94,6 @@ class Tree:
     def get_rectangle(self):
         """Get the coordinates of the rectangle, in which the tree can be put.
 
-        #TODO: Add extended description.
-
         Returns:
             tupel: Contains x1, y1, x2, y2 of the rectangle.
             Example:
@@ -135,7 +133,7 @@ class Tree:
 
     def get_steps_branch_len(self, length):
         """Get, how much steps will needed for a given branch length.
-        
+
         Returns:
             float: The age the tree must achieve to reach the given branch length.
         """
@@ -157,7 +155,7 @@ class Tree:
 
     def get_node_age_sum(self, age=None):
         """Get the sum of branches grown in an specific age
-        
+
         Returns:
             int: The sum of all nodes grown in an age.
         """
@@ -168,7 +166,7 @@ class Tree:
 
     def get_nodes(self):
         """Get the tree nodes as list.
-        
+
         Returns:
             list: A 2d-list holding the grown nodes coordinates as tupel for every age.
                 Example:
@@ -188,8 +186,6 @@ class Tree:
 
     def get_branches(self):
         """Get the tree branches as list.
-        
-        #TODO: Add more info.
 
         Returns:
             list: A 2d-list holding the grown branches coordinates as tupel for every age.
@@ -230,9 +226,7 @@ class Tree:
                 node.move(dx, dy)
 
     def grow(self):
-        """Let the tree grow
-
-        #TODO: Describe the grow process."""
+        """Let the tree grow."""
         self.nodes.append([])
 
         for n, node in enumerate(self.nodes[self.age]):

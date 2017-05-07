@@ -39,6 +39,6 @@ if __name__ == "__main__":
     im.show()
 ```
 ### Output
-![Example](https://github.com/PixelwarStudio/PyTree/images/example.png)
+![Example](https://github.com/PixelwarStudio/PyTree/blob/master/images/example.png)
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

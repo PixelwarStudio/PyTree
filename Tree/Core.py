@@ -1,7 +1,7 @@
 """
 Module for creating fractal trees
 """
-from math import cos, sin, sqrt, atan2, pi, log
+from math import cos, sin, atan2, pi, log
 from random import gauss
 
 class Node(object):
@@ -278,7 +278,7 @@ class RealTree(FractalTree):
         return FractalTree.get_branch_length(self, age) * (1 + gauss(0, self.branch_sigma))
 
     def get_total_angle(self, angle, pos):
-        return FractalTree.get_total_angle(self, angle, pos) * (1 + gauss(0, self.angle_sigma))
+        return FractalTree.get_total_angle(self, angle, pos) + gauss(0, self.angle_sigma)
 
 class SymetricTree(FractalTree):
     """A symetric Tree"""

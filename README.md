@@ -2,9 +2,9 @@
 **PyTree** is a python package, which you can use to generate trees, realistic or fractal one.
 However the whole pricipale is based on fractals.
 ## Requirements
-Python 2.x or 3.x
-Pip
-Pillow
+* Python 2.x or 3.x
+* Pip
+* Pillow
 ## Installation
 ### Using Pip
 1. Open Terminal
@@ -17,8 +17,8 @@ from Tree.Core import RealTree
 from Tree.Draw import Drawer
 
 if __name__ == "__main__":
-    # Create a Sierpinski Tree
-    my_tree = RealTree(0, 0, 200, 0.7, 2, radians(30), radians(0), 0.2, 0.2)
+    # Create a Tree
+    my_tree = RealTree(0, 0, 200, 0.7, 2, radians(30), radians(0), 0.2, radians(5))
 
     # Let the tree grow
     for i in range(12):

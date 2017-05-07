@@ -275,10 +275,10 @@ class RealTree(FractalTree):
         self.angle_sigma = angle_sigma
 
     def get_branch_length(self, age):
-        return FractalTree.get_branch_length(self, age) * gauss(1, self.branch_sigma)
+        return FractalTree.get_branch_length(self, age) * (1 + gauss(0, self.branch_sigma))
 
     def get_total_angle(self, angle, pos):
-        return FractalTree.get_total_angle(self, angle, pos) * gauss(1, self.angle_sigma)
+        return FractalTree.get_total_angle(self, angle, pos) * (1 + gauss(0, self.angle_sigma))
 
 class SymetricTree(FractalTree):
     """A symetric Tree"""

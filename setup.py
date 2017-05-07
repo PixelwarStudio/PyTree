@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="FractalTree",
-    version="0.1b4",
+    version="0.1b5",
     description="A module for creating fractal trees",
     url="https://github.com/PixelwarStudio/PyFractalTree",
     author="Pixelwar",
@@ -14,6 +14,9 @@ setup(
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.5",
         "Topic :: Scientific/Engineering :: Mathematics",
+    ],
+    install_requires=[
+        "Pillow"
     ],
     license="MIT",
     packages=["FractalTree"],

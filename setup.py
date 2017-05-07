@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name="FractalTree",
+    name="Tree",
     version="0.1b5",
     description="A module for creating fractal trees",
-    url="https://github.com/PixelwarStudio/PyFractalTree",
+    url="https://github.com/PixelwarStudio/PyTree",
     author="Pixelwar",
     author_email='janko.matthes@gmx.net',
     classifiers=[
@@ -19,6 +19,6 @@ setup(
         "Pillow"
     ],
     license="MIT",
-    packages=["FractalTree"],
+    packages=["Tree"],
     zip_safe=False
 )

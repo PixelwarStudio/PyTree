@@ -49,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'FractalTree'
+project = 'Tree'
 copyright = '2017, Pixelwar'
 author = 'Pixelwar'
 

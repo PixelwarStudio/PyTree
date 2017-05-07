@@ -28,9 +28,7 @@ class Node(object):
             angle (rad): The angle between the old and new node, relative to the horizont.
 
         Returns:
-            object: Returns the new node as object.
-            Example:
-            Node(403.125, 129.601)
+            object: Node(x, y)
         """
         return Node(cos(-angle)*distance+self.x,
                     sin(-angle)*distance+self.y)
@@ -47,10 +45,7 @@ class Node(object):
         """Get the position of the node as tuple.
 
         Returns:
-            tupel: A tupel with the x/y-position. The first element is the x-position
-            and the second element is the y-position.
-            Example:
-            (100.1, 30.0)
+            tupel: (x, y)
         """
         return (self.x, self.y)
 
@@ -104,9 +99,7 @@ class FractalTree:
         """Get the coordinates of the rectangle, in which the tree can be put.
 
         Returns:
-            tupel: Contains x1, y1, x2, y2 of the rectangle.
-            Example:
-            (100.1, 200.3, 400.2, 300.34)
+            tupel: (x1, y1, x2, y2)
         """
         min_x = self.x
         max_x = self.x
@@ -123,10 +116,10 @@ class FractalTree:
                 if max_y < node.y:
                     max_y = node.y
         return (min_x, min_y, max_x, max_y)
-    
+
     def get_size(self):
         """Get the size of the tree.
-        
+
         Returns:
             tupel: (width, height)
         """
@@ -263,7 +256,7 @@ class FractalTree:
         self.age += 1
 
     def get_total_angle(self, angle, pos):
-        """Get the total angle"""
+        """Get the total angle."""
         return angle + self.branch_angle * pos - self.shift_angle
 
     def get_node_parent(self, age, pos):

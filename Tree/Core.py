@@ -1,5 +1,5 @@
 """
-Module for creating fractal trees
+Module for creating trees
 """
 from math import cos, sin, atan2, pi, log
 from random import gauss

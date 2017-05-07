@@ -1,3 +1,7 @@
+"""
+Module for drawing trees.
+"""
+
 from PIL import Image, ImageDraw
 
 class Drawer(object):

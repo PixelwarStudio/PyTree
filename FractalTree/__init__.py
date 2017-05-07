@@ -266,6 +266,7 @@ class FractalTree:
         return self.nodes[age][int(pos / self.comp)]
 
 class RealTree(FractalTree):
+    """A realistic Tree based on fractal trees"""
     def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle, branch_sigma, angle_sigma):
         FractalTree.__init__(x, y, length, scale, complexity, branch_angle, shift_angle)
         self.branch_sigma = branch_sigma

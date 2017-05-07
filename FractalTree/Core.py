@@ -123,6 +123,15 @@ class FractalTree:
                 if max_y < node.y:
                     max_y = node.y
         return (min_x, min_y, max_x, max_y)
+    
+    def get_size(self):
+        """Get the size of the tree.
+        
+        Returns:
+            tupel: (width, height)
+        """
+        rec = self.get_rectangle()
+        return (rec[2]-rec[0], rec[3]-rec[1])
 
     def get_branch_length(self, age=None):
         """Get the length of a branch.

@@ -124,7 +124,7 @@ class FractalTree:
             tupel: (width, height)
         """
         rec = self.get_rectangle()
-        return (rec[2]-rec[0], rec[3]-rec[1])
+        return (int(rec[2]-rec[0]), int(rec[3]-rec[1]))
 
     def get_branch_length(self, age=None):
         """Get the length of a branch.

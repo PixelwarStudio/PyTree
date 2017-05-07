@@ -1,19 +1,11 @@
 from PIL import Image, ImageDraw
 
-class TreeImage(object):
-    def __init__(self, tree, size=None, color=(255, 255, 255), thickness=1):
+class Drawer(object):
+    def __init__(self, tree, im, color=(255, 255, 255), thickness=1):
+        self.im = im
         self.tree = tree
         self.color = color
         self.thickness = thickness
-
-        self.rec = tree.get_rectangle()
-
-        if size is None:
-            self.size = (int(self.rec[2]-self.rec[0]), int(self.rec[3]-self.rec[1]))
-        else:
-            self.size = size
-
-        self.im = Image.new("RGB", self.size)
 
     def get_thickness(self, age):
         return int((self.thickness*5)/(age+5))
@@ -34,12 +26,8 @@ class TreeImage(object):
         ImageDraw.Draw(self.im).line(branch, color, thickness)
 
     def draw(self):
-        tree = self.tree
-        tree.move(-self.rec[0], -self.rec[1])
-        for a, age in enumerate(tree.get_branches()):
+        for a, age in enumerate(self.tree.get_branches()):
             thickness = self.get_thickness(a)
             color = self.get_color(a)
             for branch in age:
                 self.draw_branch(branch, color, thickness)
-        tree.move(self.rec[0], self.rec[1])
-        return self.im

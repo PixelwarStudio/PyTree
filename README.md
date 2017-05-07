@@ -40,5 +40,7 @@ if __name__ == "__main__":
 ```
 ### Output
 ![Example](https://github.com/PixelwarStudio/PyTree/blob/master/images/example.png)
+## Further Examples
+See [Examples](https://github.com/PixelwarStudio/PyFractalTree/blob/master/examples)
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

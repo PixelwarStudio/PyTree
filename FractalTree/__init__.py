@@ -63,7 +63,7 @@ class Node(object):
         self.x += dx
         self.y += dy
 
-class Tree:
+class FractalTree:
     """The standard tree.
 
     Attributes:
@@ -264,22 +264,28 @@ class Tree:
         """
         return self.nodes[age][int(pos / self.comp)]
 
-class SymetricTree(Tree):
+class RealTree(FractalTree):
+    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle, branch_sigma, angle_sigma):
+        FractalTree.__init__(x, y, length, scale, complexity, branch_angle, shift_angle)
+        self.branch_sigma = branch_sigma
+        self.angle_sigma = angle_sigma
+
+class SymetricTree(FractalTree):
     """A symetric Tree"""
     def __init__(self, x, y, length, scale, complexity, branch_angle):
-        Tree.__init__(x, y, length, scale, complexity, branch_angle, 0)
+        FractalTree.__init__(x, y, length, scale, complexity, branch_angle, 0)
 
-class BinaryTree(Tree):
+class BinaryTree(FractalTree):
     """A binary Tree"""
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
-        Tree.__init__(x, y, length, scale, 2, branch_angle, shift_angle)
+        FractalTree.__init__(x, y, length, scale, 2, branch_angle, shift_angle)
 
-class TernaryTree(Tree):
+class TernaryTree(FractalTree):
     """A ternary Tree"""
     def __init__(self, x, y, length, scale, branch_angle, shift_angle):
-        Tree.__init__(x, y, length, scale, 3, branch_angle, shift_angle)
+        FractalTree.__init__(x, y, length, scale, 3, branch_angle, shift_angle)
 
-class DragonTree(Tree):
+class DragonTree(FractalTree):
     """"A Dragontree"""
     def __init__(self, x, y, length, scale, shift_angle):
-        Tree.__init__(x, y, length, scale, 2, pi/2, shift_angle)
+        FractalTree.__init__(x, y, length, scale, 2, pi/2, shift_angle)

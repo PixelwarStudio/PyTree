@@ -2,6 +2,7 @@
 Module for creating fractal trees
 """
 from math import cos, sin, sqrt, atan2, pi, log
+from random import gauss
 
 class Node(object):
     """A node.
@@ -269,6 +270,12 @@ class RealTree(FractalTree):
         FractalTree.__init__(x, y, length, scale, complexity, branch_angle, shift_angle)
         self.branch_sigma = branch_sigma
         self.angle_sigma = angle_sigma
+
+    def get_branch_length(self, age):
+        return FractalTree.get_branch_length(self, age) * gauss(1, self.branch_sigma)
+
+    def get_total_angle(self, angle, pos):
+        return FractalTree.get_total_angle(self, angle, pos) * gauss(1, self.angle_sigma)
 
 class SymetricTree(FractalTree):
     """A symetric Tree"""

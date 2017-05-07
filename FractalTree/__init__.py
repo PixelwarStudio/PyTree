@@ -268,7 +268,7 @@ class FractalTree:
 class RealTree(FractalTree):
     """A realistic Tree based on fractal trees with a little (or more) bit randomness."""
     def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle, branch_sigma, angle_sigma):
-        FractalTree.__init__(x, y, length, scale, complexity, branch_angle, shift_angle)
+        FractalTree.__init__(self, x, y, length, scale, complexity, branch_angle, shift_angle)
         self.branch_sigma = branch_sigma
         self.angle_sigma = angle_sigma
 

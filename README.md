@@ -14,7 +14,7 @@ Pillow
 from math import radians
 from PIL import Image
 from Tree.Core import RealTree
-from Tree.Draw import TreeDrawer
+from Tree.Draw import Drawer
 
 if __name__ == "__main__":
     # Create a Sierpinski Tree
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     im = Image.new("RGB", my_tree.get_size())
 
     # Draw the tree on the image
-    TreeDrawer(my_tree, im, (203, 40, 12)+(23, 90, 123), 10).draw()
+    Drawer(my_tree, im, (203, 40, 12)+(23, 90, 123), 10).draw()
 
     # Show the tree
     im.show()

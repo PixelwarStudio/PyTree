@@ -1,37 +1,27 @@
-# PyFractalTree
-**FractalTree** is a python package, which you can use to generate fractal trees, for example a binary tree or dragon tree. The package itself only provides the low-level stuff, so tasks like drawing the tree/s aren't supported.
+# PyTree
+**PyTree** is a python package, which you can use to generate trees, realistic or fractal one.
+However the whole pricipale is based on fractals.
 ## Installation
 ### Using Pip
 1. Open Terminal
-2. Type ```pip3 install FractalTree```
+2. Type ```pip3 install Tree```
 ## Quick Example
 ```python
 from math import radians
-from PIL import Image, ImageDraw
-from FractalTree import Tree
+from Tree.Core import RealTree
+from Tree.Draw import TreeImage
 
-# Define dimensions of the pic
-WIDTH = 600
-HEIGHT = 500
+if __name__ == "__main__":
+    # Create a Sierpinski Tree
+    my_tree = RealTree(400, 300, 200, 0.7, 2, radians(30), radians(0), 0.2, 0.2)
 
-# Create a PIL Image
-im = Image.new("RGB", (WIDTH, HEIGHT))
-draw = ImageDraw.Draw(im)
+    # Let the tree grow
+    for i in range(12):
+        my_tree.grow()
 
-# Create a Sierpinski Tree
-my_tree = Tree(WIDTH / 2, HEIGHT, 100, 0.5, 3, radians(120), radians(0))
-
-# Let the tree grow 
-for i in range(10):
-    my_tree.grow()
-
-# Draw the tree
-for age in my_tree.get_branches():
-    for branch in age:
-        draw.line(branch)
-
-# Give out the image
-im.show()
+    tree_image = TreeImage(my_tree, None, (255, 255, 255)+(122, 123, 0), 8)
+    im = tree_image.draw()
+    im.show()
 ```
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

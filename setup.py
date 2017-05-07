@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="Tree",
     version="0.1b5",
-    description="A module for creating fractal trees",
+    description="A package for creating and drawing trees",
     url="https://github.com/PixelwarStudio/PyTree",
     author="Pixelwar",
     author_email='janko.matthes@gmx.net',

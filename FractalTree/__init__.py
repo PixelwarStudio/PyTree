@@ -34,7 +34,7 @@ class Node(object):
         """
         return Node(cos(-angle)*distance+self.x,
                     sin(-angle)*distance+self.y)
-    
+
     def get_node_angle(self, node2):
         """Get the angle beetween 2 nodes relative to the horizont
 

@@ -6,3 +6,4 @@ build.sh
 install.sh
 test.py
 FractalTree.egg-info
+Tree.egg-info

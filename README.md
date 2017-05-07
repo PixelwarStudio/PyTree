@@ -10,6 +10,7 @@ However the whole pricipale is based on fractals.
 1. Open Terminal
 2. Type ```pip3 install Tree```
 ## Quick Example
+### Code
 ```python
 from math import radians
 from PIL import Image
@@ -37,5 +38,7 @@ if __name__ == "__main__":
     # Show the tree
     im.show()
 ```
+### Output
+![Example](https://github.com/PixelwarStudio/PyTree/images/example.png)
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

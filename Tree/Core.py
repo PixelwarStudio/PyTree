@@ -220,6 +220,17 @@ class FractalTree:
 
         return branches
 
+    def set_config(self, scale=None, complexity=None, branch_angle=None, shift_angle=None):
+        """Change some properties."""
+        if scale is not None:
+            self.scale = scale
+        if complexity is not None:
+            self.comp = complexity
+        if branch_angle is not None:
+            self.branch_angle = branch_angle
+        if shift_angle is not None:
+            self.shift_angle = shift_angle
+
     def move(self, dx, dy):
         """Move the tree
 

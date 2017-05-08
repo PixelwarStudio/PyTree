@@ -80,7 +80,7 @@ class FractalTree:
             [...]
             ]
     """
-    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle):
+    def __init__(self, x=0, y=0, length=100, scale=0.5, complexity=2, branch_angle=pi, shift_angle=0):
         self.x = x
         self.y = y
         self.length = length

@@ -19,7 +19,15 @@ from Tree.Draw import Drawer
 
 if __name__ == "__main__":
     # Create a Tree
-    my_tree = RealTree((0, 0, 0, -200), 0.7, 2, radians(30), radians(0), 0.2, radians(5))
+    my_tree = RealTree(
+        pos = (0, 0, 0, -200),
+        scale = 0.7,
+        complexity = 2,
+        branch_angle = radians(30),
+        shift_angle = radians(0),
+        branch_sigma = 0.2,
+        angle_sigma = radians(5)
+    )
 
     # Let the tree grow
     for i in range(12):

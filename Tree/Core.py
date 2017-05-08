@@ -252,7 +252,6 @@ class FractalTree:
         self.nodes.append([])
 
         for n, node in enumerate(self.nodes[self.age]):
-            node = self.nodes[self.age][n]
             if self.age == 0:
                 p_node = Node(self.x, self.y)
             else:

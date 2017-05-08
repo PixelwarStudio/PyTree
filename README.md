@@ -19,7 +19,7 @@ from Tree.Draw import Drawer
 
 if __name__ == "__main__":
     # Create a Tree
-    my_tree = RealTree(0, 0, 200, 0.7, 2, radians(30), radians(0), 0.2, radians(5))
+    my_tree = RealTree((0, 0, 0, -200), 0.7, 2, radians(30), radians(0), 0.2, radians(5))
 
     # Let the tree grow
     for i in range(12):
@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # Move the tree in the right position, so that the tree is completly in the image
     rec = my_tree.get_rectangle()
-    my_tree.move(-rec[0], -rec[1])
+    my_tree.move((-rec[0], -rec[1])
 
     # Create a image with the dimensions of the tree
     im = Image.new("RGB", my_tree.get_size())

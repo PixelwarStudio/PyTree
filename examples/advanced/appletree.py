@@ -14,7 +14,7 @@ class AppleTree(RealTree):
             if a >= AppleTree.MIN_AGE:
                 for node in age:
                     if AppleTree.RATE >= random():
-                        apples[a].append((node.x, node.y))
+                        apples[a].append(node.get_tuple())
         return apples
 
 
@@ -41,13 +41,13 @@ class AppleTreeDrawer(Drawer):
                 self.draw_apple(apple)
 
 if __name__ == "__main__":
-    appletree = AppleTree(0, 0, 200, 0.65, 3, radians(40), radians(0), 0.2, radians(10))
+    appletree = AppleTree((0, 0, 0, -200), 0.65, 3, radians(40), radians(0), 0.2, radians(10))
 
     for n in range(10):
         appletree.grow()
 
     rec = appletree.get_rectangle()
-    appletree.move(-rec[0], -rec[1])
+    appletree.move((-rec[0], -rec[1]))
 
     im = Image.new("RGB", appletree.get_size(), color=(231, 231, 231))
 

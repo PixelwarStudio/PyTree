@@ -1,7 +1,7 @@
 """
 Module for creating trees
 """
-from math import cos, sin, atan2, pi, log
+from math import cos, sin, atan2, pi, log, sqrt
 from random import gauss
 
 class Node(object):
@@ -11,9 +11,8 @@ class Node(object):
         x (float): The x-position of the node.
         y (float): The y-position of the node.
     """
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, pos):
+        self.pos = pos
 
     def make_new_node(self, distance, angle):
         """Make a new node from an existing one.
@@ -30,16 +29,16 @@ class Node(object):
         Returns:
             object: Node(x, y)
         """
-        return Node(cos(-angle)*distance+self.x,
-                    sin(-angle)*distance+self.y)
+        return Node((cos(-angle)*distance+self.pos[0],
+                    sin(-angle)*distance+self.pos[1]))
 
-    def get_node_angle(self, node2):
+    def get_node_angle(self, node):
         """Get the angle beetween 2 nodes relative to the horizont
 
         Returns:
             rad: The angle
         """
-        return atan2(self.x-node2.x, self.y-node2.y) - pi / 2
+        return atan2(self.pos[0]-node.pos[0], self.pos[1]-node.pos[1]) - pi / 2
 
     def get_tuple(self):
         """Get the position of the node as tuple.
@@ -47,17 +46,16 @@ class Node(object):
         Returns:
             tupel: (x, y)
         """
-        return (self.x, self.y)
+        return self.pos
 
-    def move(self, dx, dy):
+    def move(self, delta):
         """Move the node.
 
         Args:
             dx (float): Delta (Adjustment) of the x-pos.
             dy (float): Delta (Adjustment) of the y-pos.
         """
-        self.x += dx
-        self.y += dy
+        self.pos = (self.pos[0]+delta[0], self.pos[1]+delta[1])
 
 class FractalTree:
     """The standard tree.
@@ -80,10 +78,9 @@ class FractalTree:
             [...]
             ]
     """
-    def __init__(self, x=0, y=0, length=100, scale=0.5, complexity=2, branch_angle=pi, shift_angle=0):
-        self.x = x
-        self.y = y
-        self.length = length
+    def __init__(self, pos=(0, 0, 0, 100), scale=0.5, complexity=2, branch_angle=pi, shift_angle=0):
+        self.pos = pos
+        self.length = sqrt((pos[2]-pos[0])**2+(pos[3]-pos[1])**2)
         self.scale = scale
         self.comp = complexity
         self.branch_angle = branch_angle
@@ -92,7 +89,7 @@ class FractalTree:
         self.age = 0
 
         self.nodes = [
-            [Node(x, y - length)]
+            [Node(pos[2:])]
         ]
 
     def get_rectangle(self):
@@ -101,20 +98,20 @@ class FractalTree:
         Returns:
             tupel: (x1, y1, x2, y2)
         """
-        min_x = self.x
-        max_x = self.x
-        min_y = self.y
-        max_y = self.y
+        min_x = self.pos[0]
+        max_x = self.pos[0]
+        min_y = self.pos[1]
+        max_y = self.pos[1]
         for age in self.nodes:
             for node in age:
-                if min_x > node.x:
-                    min_x = node.x
-                if max_x < node.x:
-                    max_x = node.x
-                if min_y > node.y:
-                    min_y = node.y
-                if max_y < node.y:
-                    max_y = node.y
+                if min_x > node.pos[0]:
+                    min_x = node.pos[0]
+                if max_x < node.pos[0]:
+                    max_x = node.pos[0]
+                if min_y > node.pos[1]:
+                    min_y = node.pos[1]
+                if max_y < node.pos[1]:
+                    max_y = node.pos[1]
         return (min_x, min_y, max_x, max_y)
 
     def get_size(self):
@@ -213,7 +210,7 @@ class FractalTree:
             branches.append([])
             for n, node in enumerate(level):
                 if age == 0:
-                    p_node = Node(self.x, self.y)
+                    p_node = Node(self.pos[:2])
                 else:
                     p_node = self.get_node_parent(age-1, n)
                 branches[age].append(p_node.get_tuple() + node.get_tuple())
@@ -231,21 +228,19 @@ class FractalTree:
         if shift_angle is not None:
             self.shift_angle = shift_angle
 
-    def move(self, dx, dy):
+    def move(self, delta):
         """Move the tree
 
         Args:
-            dx (float): Delta (Adjustment) of the x-pos.
-            dy (float): Delta (Adjustment) of the y-pos.
+            delta (tupel):
         """
-        # Move the tree start position
-        self.x += dx
-        self.y += dy
+        pos = self.pos
+        self.pos = (pos[0]+delta[0], pos[1]+delta[1], pos[2]+delta[0], pos[3]+delta[1])
 
         # Move all nodes
         for age in self.nodes:
             for node in age:
-                node.move(dx, dy)
+                node.move(delta)
 
     def grow(self):
         """Let the tree grow."""
@@ -253,7 +248,7 @@ class FractalTree:
 
         for n, node in enumerate(self.nodes[self.age]):
             if self.age == 0:
-                p_node = Node(self.x, self.y)
+                p_node = Node(self.pos[:2])
             else:
                 p_node = self.get_node_parent(self.age-1, n)
             angle = node.get_node_angle(p_node)
@@ -279,8 +274,8 @@ class FractalTree:
 
 class RealTree(FractalTree):
     """A realistic Tree based on fractal trees with a little (or more) bit randomness."""
-    def __init__(self, x, y, length, scale, complexity, branch_angle, shift_angle, branch_sigma, angle_sigma):
-        FractalTree.__init__(self, x, y, length, scale, complexity, branch_angle, shift_angle)
+    def __init__(self, pos, scale, complexity, branch_angle, shift_angle, branch_sigma, angle_sigma):
+        FractalTree.__init__(self, pos, scale, complexity, branch_angle, shift_angle)
         self.branch_sigma = branch_sigma
         self.angle_sigma = angle_sigma
 

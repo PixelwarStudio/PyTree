@@ -14,19 +14,18 @@ However the whole pricipale is based on fractals.
 ```python
 from math import radians
 from PIL import Image
-from Tree.Core import RealTree
-from Tree.Draw import Drawer
+from Tree.core import Tree
+from Tree.draw import Drawer
 
 if __name__ == "__main__":
     # Create a Tree
-    my_tree = RealTree(
+    my_tree = Tree(
         pos = (0, 0, 0, -200),
         scale = 0.7,
         complexity = 2,
-        branch_angle = radians(30),
+        angle = (radians(30), 0)
         shift_angle = radians(0),
-        branch_sigma = 0.2,
-        angle_sigma = radians(5)
+        sigma = (0.2, 5/180)
     )
 
     # Let the tree grow

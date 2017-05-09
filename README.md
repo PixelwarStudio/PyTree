@@ -23,14 +23,10 @@ if __name__ == "__main__":
         pos = (0, 0, 0, -200),
         scale = 0.7,
         complexity = 2,
-        angle = (radians(30), 0)
-        shift_angle = radians(0),
+        angle = (radians(30), 0),
         sigma = (0.2, 5/180)
     )
-
-    # Let the tree grow
-    for i in range(12):
-        my_tree.grow()
+    my_tree.grow(times=12)
 
     # Move the tree in the right position, so that the tree is completly in the image
     rec = my_tree.get_rectangle()

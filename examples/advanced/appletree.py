@@ -1,10 +1,13 @@
+"""
+Example: Apple tree
+"""
 from math import radians
 from random import random
 from PIL import Image, ImageDraw
-from Tree.Core import RealTree
-from Tree.Draw import Drawer
+from Tree.core import Tree
+from Tree.draw import Drawer
 
-class AppleTree(RealTree):
+class AppleTree(Tree):
     MIN_AGE = 8
     RATE = 1/5000
     def get_apples(self):
@@ -41,7 +44,7 @@ class AppleTreeDrawer(Drawer):
                 self.draw_apple(apple)
 
 if __name__ == "__main__":
-    appletree = AppleTree((0, 0, 0, -200), 0.65, 3, radians(40), radians(0), 0.2, radians(10))
+    appletree = AppleTree((0, 0, 0, -200), 0.65, 3, (radians(40), radians(0)), (0.2, 10/180))
 
     for n in range(10):
         appletree.grow()

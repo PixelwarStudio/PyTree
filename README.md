@@ -15,7 +15,7 @@ However the whole pricipale is based on fractals.
 from math import radians
 from PIL import Image
 from Tree.core import Tree
-from Tree.draw import Drawer
+from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
     # Create a Tree
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     im = Image.new("RGB", my_tree.get_size())
 
     # Draw the tree on the image
-    Drawer(my_tree, im, (203, 40, 12)+(23, 90, 123), 10).draw()
+    PillowDrawer(my_tree, im, (203, 40, 12)+(23, 90, 123), 10).draw()
 
     # Show the tree
     im.show()
@@ -44,6 +44,12 @@ if __name__ == "__main__":
 ### Output
 ![Example](https://github.com/PixelwarStudio/PyTree/blob/master/images/example.png)
 ## Further Examples
+### Basic
+Tree | Sierpinski tree | Binary tree | Color tree
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+### Advanced
 See [Examples](https://github.com/PixelwarStudio/PyFractalTree/blob/master/examples)
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

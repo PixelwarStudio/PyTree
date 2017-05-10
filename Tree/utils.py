@@ -1,4 +1,7 @@
-from math import atan2, cos, sin, pi
+from math import atan2, cos, sin, pi, sqrt
+
+def convert_color(color):
+    return "rgb({}, {}, {})".format(color[0], color[1], color[2])
 
 class Node(object):
     """A node.
@@ -35,6 +38,10 @@ class Node(object):
         """
         return atan2(self.pos[0]-node.pos[0], self.pos[1]-node.pos[1]) - pi / 2
 
+    def get_distance(self, node):
+        delta = (node.pos[0]-self.pos[0], node.pos[1]-self.pos[1])
+        return sqrt(delta[0]**2+delta[1]**2)
+        
     def get_tuple(self):
         """Get the position of the node as tuple.
 

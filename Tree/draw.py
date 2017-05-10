@@ -1,13 +1,14 @@
 """
 Module for drawing trees.
 """
-
-from PIL import Image, ImageDraw
+from PIL import ImageDraw
+import svgwrite
+from Tree.utils import convert_color
 
 class Drawer(object):
-    """This drawer draws tree to an PIL/Pillow image"""
-    def __init__(self, tree, im, color=(255, 255, 255), thickness=1):
-        self.im = im
+    """This drawer draws tree to an PIL/Pillow image."""
+    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1):
+        self.canvas = canvas
         self.tree = tree
         self.color = color
         self.thickness = thickness
@@ -43,20 +44,36 @@ class Drawer(object):
                     int(color[1]+per_age[1]*age),
                     int(color[2]+per_age[2]*age))
 
-    def draw_branch(self, branch, color, thickness):
-        """Draws a branch using PIL
-
-        Args:
-            branch (tuple): (x1, y1, x2, y2)
-            color (tuple): (r, g, b)
-            thickness (int): The thickness of the branch.
-        """
-        ImageDraw.Draw(self.im).line(branch, color, thickness)
+    def draw_branch(self, branch, color, thickness, age=None):
+        pass
 
     def draw(self):
         """Draws the tree."""
-        for a, age in enumerate(self.tree.get_branches()):
-            thickness = self.get_thickness(a)
-            color = self.get_color(a)
-            for branch in age:
-                self.draw_branch(branch, color, thickness)
+        for age, level in enumerate(self.tree.get_branches()):
+            thickness = self.get_thickness(age)
+            color = self.get_color(age)
+            for branch in level:
+                self.draw_branch(branch, color, thickness, age)
+
+class PillowDrawer(Drawer):
+    def draw_branch(self, branch, color, thickness, age=None):
+        ImageDraw.Draw(self.canvas).line(branch, color, thickness)
+
+class SvgDrawer(Drawer):
+    def draw_branch(self, branch, color, thickness, age):
+        color = convert_color(color)
+        self.group[age].add(
+            self.canvas.line(
+                start=branch[:2],
+                end=branch[2:],
+                stroke=color,
+                stroke_width=thickness
+            )
+        )
+
+    def draw(self):
+        self.group = []
+        for age in range(self.tree.age+1):
+            self.group.append(self.canvas.add(svgwrite.container.Group()))
+        Drawer.draw(self)
+

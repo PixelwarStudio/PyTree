@@ -1,16 +1,19 @@
 # PyTree
-**PyTree** is a python package, which you can use to generate trees, realistic or fractal one.
-However the whole pricipale is based on fractals.
+**PyTree** is a python package, which you can use to generate trees, realistic or fractal ones.
+## Table of Contents
+* Requirements
+* Installation
+* Example
+* License
 ## Requirements
-* Python 2.7+ or 3.x (Recommend)
+* Python 2.7+ or 3.5+ (Recommended)
 * Pip
 * Pillow
+* svgwrite
 ## Installation
-### Using Pip
 1. Open Terminal
-2. Type ```pip3 install Tree```
-## Quick Example
-### Code
+2. Type ```pip install Tree``` or ```pip3 install Tree```
+## Example
 ```python
 from math import radians
 from PIL import Image
@@ -41,15 +44,8 @@ if __name__ == "__main__":
     # Show the tree
     im.show()
 ```
-### Output
 ![Example](https://github.com/PixelwarStudio/PyTree/blob/master/images/example.png)
-## Further Examples
-### Basic
-Tree | Sierpinski tree | Binary tree | Color tree
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-### Advanced
+### More Examples
 See [Examples](https://github.com/PixelwarStudio/PyFractalTree/blob/master/examples)
 ## License
 See [License](https://github.com/PixelwarStudio/PyFractalTree/blob/master/LICENSE)

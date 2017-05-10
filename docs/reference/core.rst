@@ -1,4 +1,4 @@
-Core
+core
 ****
-..automodule:: Tree.Core
-    :members:
+.. autoclass:: Tree.core.Tree
+   :members:

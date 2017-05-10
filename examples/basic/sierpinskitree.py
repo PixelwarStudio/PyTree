@@ -4,7 +4,7 @@ Example: Sierpinski tree
 from math import radians
 from PIL import Image
 from Tree.core import Tree
-from Tree.draw import Drawer
+from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
     sier_tree = Tree(pos=(0, 0, 0, -500), complexity=3, angle=(radians(120), 0))
@@ -20,6 +20,6 @@ if __name__ == "__main__":
 
     # Create, draw and show the image/tree
     im = Image.new("RGB", sier_tree.get_size())
-    Drawer(sier_tree, im).draw()
+    PillowDrawer(sier_tree, im).draw()
     im.show()
     

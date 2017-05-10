@@ -4,7 +4,7 @@ Example: Tree
 from math import radians
 from PIL import Image
 from Tree.core import Tree
-from Tree.draw import Drawer
+from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
     tree = Tree(pos=(0, 0, 0, -400), complexity=3, angle=(radians(25), 0), sigma=(0.1, 0.1))
@@ -21,6 +21,6 @@ if __name__ == "__main__":
 
     # Create, draw and show the image/tree
     im = Image.new("RGB", tree.get_size())
-    Drawer(tree, im).draw()
+    PillowDrawer(tree, im).draw()
     im.show()
     

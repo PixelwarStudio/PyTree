@@ -4,7 +4,7 @@ Example: Binary tree
 from math import radians
 from PIL import Image
 from Tree.core import Tree
-from Tree.draw import Drawer
+from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
     # Just modify angle[0] or scale to generate other binarytrees
@@ -21,5 +21,5 @@ if __name__ == "__main__":
 
     # Create, draw and show the image/tree
     im = Image.new("RGB", bin_tree.get_size())
-    Drawer(bin_tree, im).draw()
+    PillowDrawer(bin_tree, im).draw()
     im.show()

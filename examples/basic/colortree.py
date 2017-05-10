@@ -4,7 +4,7 @@ Example: Color tree
 from math import radians
 from PIL import Image
 from Tree.core import Tree
-from Tree.draw import Drawer
+from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
     sier_tree = Tree(pos=(0, 0, 0, -300), complexity=3, scale=0.7, angle=(radians(20), 0), sigma=(0.2, 0.1))
@@ -19,6 +19,6 @@ if __name__ == "__main__":
     im = Image.new("RGB", sier_tree.get_size())
     # Set the color of the tree
     gradient = (96, 65, 6)+(9, 158, 19)
-    Drawer(sier_tree, im, color=gradient, thickness=10).draw()
+    PillowDrawer(sier_tree, im, color=gradient, thickness=10).draw()
     im.show()
     

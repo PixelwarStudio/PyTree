@@ -1,6 +1,17 @@
+"""
+Helper module.
+"""
 from math import atan2, cos, sin, pi, sqrt
 
 def convert_color(color):
+    """Convert color tupel(r, g, b) to string("rgb({r}, {g}, {b}").
+    
+    Args:
+        color (tupel): RGB color. e.g. (134, 8, 45)
+    
+    Returns:
+        string: "rgb({r}, {g}, {b}"
+    """
     return "rgb({}, {}, {})".format(color[0], color[1], color[2])
 
 class Node(object):

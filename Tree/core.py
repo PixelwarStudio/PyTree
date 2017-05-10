@@ -10,11 +10,11 @@ class Tree:
 
     Attributes:
         pos (tupel): A tupel, holding the start and end point of the tree. (x1, y1, x2, y2)
-        length (float): The start length.
         scale (float): Indicating how the branch length develops from age to age.
         comp (int): Indicating how many new branches/nodes sprout from an older node.
-        angle (tuple): Holding the branch and shift angle in radians. (pi, p1/2)
-        sigma (tuple): Holding the branch and angle sigma. (0.1, 0.2)
+        angle (tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
+        sigma (tuple): Holding the branch and angle sigma. e.g.(0.1, 0.2)
+        length (float): The start length.
         age (int): A counter increasing every time grow() is called by 1.
         nodes (list): A 2d-list holding the grown nodes for every age.
             Example:
@@ -106,7 +106,7 @@ class Tree:
         return age if self.comp == 1 else int((pow(self.comp, age+1) - 1) / (self.comp - 1))
 
     def get_node_age_sum(self, age=None):
-        """Get the sum of branches grown in an specific age
+        """Get the sum of branches grown in an specific age.
 
         Returns:
             int: The sum of all nodes grown in an age.

@@ -9,3 +9,5 @@ FractalTree.egg-info
 Tree.egg-info
 launch.json
 *.png
+Pipfile
+Pipfile.lock

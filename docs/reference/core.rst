@@ -1,4 +1,4 @@
 core
 ****
 .. autoclass:: Tree.core.Tree
-   :members:
+   :members: get_branches, get_size, grow

@@ -1,6 +1,6 @@
 PyTree
 ======
-.. image:: https://img.shields.io/pypi/v/nine.svg?style=flat-square
+.. image:: https://img.shields.io/pypi/v/tree.svg?style=flat-square
         :target: https://pypi.python.org/pypi/Tree
 
 .. image:: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square

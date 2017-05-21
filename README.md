@@ -1,4 +1,5 @@
 # PyTree
+[![PyPI](https://img.shields.io/pypi/v/nine.svg?style=flat-square)](https://pypi.python.org/pypi/Tree/0.1b8)
 **PyTree** is a python package, which you can use to generate trees, realistic or fractal ones.
 ## Requirements
 * Python 2.7+ or 3.5+ (Recommended)

@@ -3,8 +3,8 @@ PyTree
 .. image:: https://img.shields.io/pypi/v/tree.svg?style=flat-square
         :target: https://pypi.python.org/pypi/Tree
 
-.. image:: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
-        :target: https://github.com/PixelwarStudio/PyTree
+.. image:: https://img.shields.io/pypi/l/Tree.svg
+        :target: https://github.com/PixelwarStudio/PyTree/blob/master/LICENSE
 
 Python package, which you can use to generate and drawing trees, realistic or fractal ones.
 

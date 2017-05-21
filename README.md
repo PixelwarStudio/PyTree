@@ -1,10 +1,5 @@
 # PyTree
 **PyTree** is a python package, which you can use to generate trees, realistic or fractal ones.
-## Table of Contents
-* Requirements
-* Installation
-* Example
-* License
 ## Requirements
 * Python 2.7+ or 3.5+ (Recommended)
 * Pip

@@ -2,8 +2,11 @@ PyTree
 ======
 Python package, which you can use to generate and drawing trees, realistic or fractal ones.
 
-.. image:: https://img.shields.io/pypi/v/nine.svg?style=flat-square   :target: https://pypi.python.org/pypi/Tree/0.1b8
-.. image:: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square   :target: https://github.com/PixelwarStudio/PyTree
+.. image:: https://img.shields.io/pypi/v/nine.svg?style=flat-square
+        :target: https://pypi.python.org/pypi/Tree/0.1b8
+
+.. image:: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
+        :target: https://github.com/PixelwarStudio/PyTree
 
 Usage
 -----

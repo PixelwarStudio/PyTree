@@ -8,9 +8,11 @@ Python package, which you can use to generate and drawing trees, realistic or fr
 Usage
 -----
 .. code-block:: bash
+
     $ pip install Tree
 
 .. code-block:: python
+
     from math import radians
     from PIL import Image
     from Tree.core import Tree

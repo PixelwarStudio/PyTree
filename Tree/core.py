@@ -176,7 +176,11 @@ class Tree:
                 node.move(delta)
 
     def grow(self, times=1):
-        """Let the tree grow."""
+        """Let the tree grow.
+
+        Args:
+            times (integer): Indicate how many times the tree will grow.
+        """
         self.nodes.append([])
 
         for n, node in enumerate(self.nodes[self.age]):

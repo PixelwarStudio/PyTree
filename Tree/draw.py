@@ -44,12 +44,11 @@ class Drawer(object):
         tree = self.tree
         if len(color) == 3:
             return color
-        else:
-            diff = (color[3]-color[0], color[4]-color[1], color[5]-color[2])
-            per_age = (diff[0]/tree.age, diff[1]/tree.age, diff[2]/tree.age)
-            return (int(color[0]+per_age[0]*age),
-                    int(color[1]+per_age[1]*age),
-                    int(color[2]+per_age[2]*age))
+        diff = (color[3]-color[0], color[4]-color[1], color[5]-color[2])
+        per_age = (diff[0]/tree.age, diff[1]/tree.age, diff[2]/tree.age)
+        return (int(color[0]+per_age[0]*age),
+                int(color[1]+per_age[1]*age),
+                int(color[2]+per_age[2]*age))
 
     def _draw_branch(self, branch, color, thickness, age):
         """Placeholder for specific draw methods for a branch.
@@ -101,4 +100,3 @@ class SvgDrawer(Drawer):
         for _ in range(self.tree.age+1):
             self.group.append(self.canvas.add(svgwrite.container.Group()))
         Drawer.draw(self)
-

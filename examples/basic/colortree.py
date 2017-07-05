@@ -7,7 +7,7 @@ from Tree.core import Tree
 from Tree.draw import PillowDrawer
 
 if __name__ == "__main__":
-    sier_tree = Tree(pos=(0, 0, 0, -300), complexity=3, scale=0.7, angle=(radians(20), 0), sigma=(0.2, 0.1))
+    sier_tree = Tree(pos=(0, 0, 0, -250), complexity=3, scale=0.7, angle=(radians(20), 0), sigma=(0.2, 0.1))
 
     sier_tree.grow(10)
 

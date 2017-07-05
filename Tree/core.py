@@ -9,23 +9,20 @@ class Tree:
     """The standard tree.
 
     Attributes:
-        pos (tupel): A tupel, holding the start and end point of the tree. (x1, y1, x2, y2)
-        scale (float): Indicating how the branch length develops from age to age.
-        comp (int): Indicating how many new branches/nodes sprout from an older node.
-        angle (tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
-        sigma (tuple): Holding the branch and angle sigma. e.g.(0.1, 0.2)
         length (float): The start length.
         age (int): A counter increasing every time grow() is called by 1.
         nodes (list): A 2d-list holding the grown nodes for every age.
-            Example:
-            [
-            [node1],
-            [node2, node3],
-            [node4, node5, ... ],
-            [...]
-            ]
     """
     def __init__(self, pos=(0, 0, 0, -100), scale=0.5, complexity=2, angle=(pi, 0), sigma=(0, 0)):
+        """The contructor.
+
+        Args:
+            pos (tupel): A tupel, holding the start and end point of the tree. (x1, y1, x2, y2)
+            scale (float): Indicating how the branch length develops from age to age.
+            complexity (int): Indicating how many new branches/nodes sprout from an older node.
+            angle (tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
+            sigma (tuple): Holding the branch and angle sigma. e.g.(0.1, 0.2)
+        """
         self.pos = pos
         self.length = sqrt((pos[2]-pos[0])**2+(pos[3]-pos[1])**2)
         self.scale = scale

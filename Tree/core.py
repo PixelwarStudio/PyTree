@@ -171,6 +171,11 @@ class Tree:
         for age in self.nodes:
             for node in age:
                 node.move(delta)
+    
+    def move_in_rectangle(self):
+        """Move the tree so that the tree fits in the rectangle."""
+        rec = self.get_rectangle()
+        self.move((-rec[0], -rec[1]))
 
     def grow(self, times=1):
         """Let the tree grow.

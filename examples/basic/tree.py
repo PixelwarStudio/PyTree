@@ -16,8 +16,7 @@ if __name__ == "__main__":
     tree.grow(steps)
 
     # Move the tree in the right position
-    rec = tree.get_rectangle()
-    tree.move((-rec[0], -rec[1]))
+    tree.move_in_rectangle()
 
     # Create, draw and show the image/tree
     im = Image.new("RGB", tree.get_size())

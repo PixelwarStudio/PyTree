@@ -16,8 +16,7 @@ if __name__ == "__main__":
     bin_tree.grow(steps)
 
     # Move the tree in the right position
-    rec = bin_tree.get_rectangle()
-    bin_tree.move((-rec[0], -rec[1]))
+    bin_tree.move_in_rectangle()
 
     # Create, draw and show the image/tree
     im = Image.new("RGB", bin_tree.get_size())

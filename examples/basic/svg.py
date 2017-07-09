@@ -17,8 +17,7 @@ if __name__ == "__main__":
     tree.grow(10)
 
     # Move the tree in the right position
-    rec = tree.get_rectangle()
-    tree.move((-rec[0], -rec[1]))
+    tree.move_in_rectangle()
 
     # Create, draw and show the image/tree
     svg = Drawing(filename="mycoolsvg.svg", size=tree.get_size())

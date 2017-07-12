@@ -13,14 +13,15 @@ class Tree:
         age (int): A counter increasing every time grow() is called by 1.
         nodes (list): A 2d-list holding the grown nodes for every age.
     """
-    def __init__(self, pos=(0, 0, 0, -100), scale=0.5, complexity=2, angle=pi, rot_angle=0, sigma=(0, 0)):
+    def __init__(self, pos=(0, 0, 0, -100), scale=0.5, complexity=2, angle=pi, shift_angle=0, sigma=(0, 0)):
         """The contructor.
 
         Args:
             pos (tupel): A tupel, holding the start and end point of the tree. (x1, y1, x2, y2)
-            scale (float): Indicating how the branch length develops from age to age.
+            scale (float/tuple): Indicating how the branch/es length/es develop/s from age to age.
             complexity (int): Indicating how many new branches/nodes sprout from an older node.
-            angle (tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
+            angle (float/tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
+            shift_angle (int): Holding the rotation angle for all branches.
             sigma (tuple): Holding the branch and angle sigma. e.g.(0.1, 0.2)
         """
         self.pos = pos
@@ -28,7 +29,7 @@ class Tree:
         self.comp = complexity
         self.scale = [scale]*complexity if isinstance(scale,float) else scale
         self.angle = [angle]*(complexity-1) if isinstance(angle[0],float) else angle
-        self.rot_angle = rot_angle
+        self.shift_angle = shift_angle
         self.sigma = sigma
 
         self.age = 0
@@ -205,7 +206,7 @@ class Tree:
 
     def __get_total_angle(self, angle, pos):
         """Get the total angle."""
-        tot_angle = angle - sum(self.angle[0])/(self.comp-1) + sum(self.angle[0][:pos]) - self.rot_angle
+        tot_angle = angle - sum(self.angle[0])/(self.comp-1) + sum(self.angle[0][:pos]) - self.shift_angle
         if self.sigma[1] != 0:
             tot_angle += gauss(0, self.sigma[1]) * pi
         return tot_angle

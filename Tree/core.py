@@ -81,7 +81,7 @@ class Tree:
         if age is None:
             age = self.age
 
-        return self.length * pow(self.scale, age)
+        return self.length * pow(min(self.scale), age)
 
     def get_steps_branch_len(self, length):
         """Get, how much steps will needed for a given branch length.

@@ -33,8 +33,7 @@ Usage
         my_tree.grow(times=12)
 
         # Move the tree in the right position, so that the tree is completly in the image
-        rec = my_tree.get_rectangle()
-        my_tree.move((-rec[0], -rec[1]))
+        rec = my_tree.move_in_rectangle()
 
         # Create a image with the dimensions of the tree
         im = Image.new("RGB", my_tree.get_size())

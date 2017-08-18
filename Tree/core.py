@@ -13,7 +13,7 @@ class Tree:
         age (int): A counter increasing every time grow() is called by 1.
         nodes (list): A 2d-list holding the grown nodes for every age.
     """
-    def __init__(self, pos=(0, 0, 0, -100), branches=[], sigma=(0, 0)):
+    def __init__(self, pos=(0, 0, 0, -100), branches=None, sigma=(0, 0)):
         """The contructor.
 
         Args:
@@ -168,7 +168,7 @@ class Tree:
         for age in self.nodes:
             for node in age:
                 node.move(delta)
-    
+
     def move_in_rectangle(self):
         """Move the tree so that the tree fits in the rectangle."""
         rec = self.get_rectangle()
@@ -220,13 +220,19 @@ class Tree:
         """
         return self.nodes[age][int(pos / self.comp)]
 
-def generate_branches(scales, angles, shift_angle):
+def generate_branches(scales=None, angles=None, shift_angle=0):
     """Generates branches with alternative system.
 
+    Args:
+        scales (tuple/array): Indicating how the branch/es length/es develop/s from age to age.
+        angles (tuple/array): Holding the branch and shift angle in radians.
+        shift_angle (float): Holding the rotation angle for all branches.
+
     Returns:
-        scales (float/tuple): Indicating how the branch/es length/es develop/s from age to age.
-        angles (float/tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
-        shift_angle (int): Holding the rotation angle for all branches.
+        branches (2d-array): A array constits of arrays holding scale and angle for every branch.
     """
-    if len(scales) == len(angles) + 1:
-        pass
+    branches = []
+    for pos, scale in enumerate(scales):
+        angle = -sum(angles)/2 + sum(angles[:pos]) + shift_angle
+        branches.append([scale, angle])
+    return branches

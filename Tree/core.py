@@ -13,25 +13,20 @@ class Tree:
         age (int): A counter increasing every time grow() is called by 1.
         nodes (list): A 2d-list holding the grown nodes for every age.
     """
-    def __init__(self, pos=(0, 0, 0, -100), scale=0.5, complexity=2, angle=pi, shift_angle=0, sigma=(0, 0)):
+    def __init__(self, pos=(0, 0, 0, -100), branches=None, sigma=(0, 0)):
         """The contructor.
 
         Args:
             pos (tupel): A tupel, holding the start and end point of the tree. (x1, y1, x2, y2)
-            scale (float/tuple): Indicating how the branch/es length/es develop/s from age to age.
-            complexity (int): Indicating how many new branches/nodes sprout from an older node.
-            angle (float/tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
-            shift_angle (int): Holding the rotation angle for all branches.
+            branches (tupel/array): Holding array/s with scale and angle for every branch.
             sigma (tuple): Holding the branch and angle sigma. e.g.(0.1, 0.2)
         """
         self.pos = pos
         self.length = sqrt((pos[2]-pos[0])**2+(pos[3]-pos[1])**2)
-        self.comp = complexity
-        self.scale = [scale]*complexity if isinstance(scale,float) else scale
-        self.angle = [angle]*(complexity-1) if isinstance(angle[0],float) else angle
-        self.shift_angle = shift_angle
+        self.branches = branches
         self.sigma = sigma
 
+        self.comp = len(self.branches)
         self.age = 0
 
         self.nodes = [
@@ -83,7 +78,7 @@ class Tree:
         if age is None:
             age = self.age
 
-        return self.length * pow(self.scale[pos], age)
+        return self.length * pow(self.branches[pos][0], age)
 
     def get_steps_branch_len(self, length):
         """Get, how much steps will needed for a given branch length.
@@ -91,7 +86,7 @@ class Tree:
         Returns:
             float: The age the tree must achieve to reach the given branch length.
         """
-        return log(length/self.length, min(self.scale))
+        return log(length/self.length, min(self.branches[0][0]))
 
     def get_node_sum(self, age=None):
         """Get sum of all branches in the tree.
@@ -173,7 +168,7 @@ class Tree:
         for age in self.nodes:
             for node in age:
                 node.move(delta)
-    
+
     def move_in_rectangle(self):
         """Move the tree so that the tree fits in the rectangle."""
         rec = self.get_rectangle()
@@ -206,7 +201,7 @@ class Tree:
 
     def __get_total_angle(self, angle, pos):
         """Get the total angle."""
-        tot_angle = angle - sum(self.angle[0])/(self.comp-1) + sum(self.angle[0][:pos]) - self.shift_angle
+        tot_angle = angle - self.branches[pos][1]
         if self.sigma[1] != 0:
             tot_angle += gauss(0, self.sigma[1]) * pi
         return tot_angle
@@ -224,3 +219,20 @@ class Tree:
             object: The parent node.
         """
         return self.nodes[age][int(pos / self.comp)]
+
+def generate_branches(scales=None, angles=None, shift_angle=0):
+    """Generates branches with alternative system.
+
+    Args:
+        scales (tuple/array): Indicating how the branch/es length/es develop/s from age to age.
+        angles (tuple/array): Holding the branch and shift angle in radians.
+        shift_angle (float): Holding the rotation angle for all branches.
+
+    Returns:
+        branches (2d-array): A array constits of arrays holding scale and angle for every branch.
+    """
+    branches = []
+    for pos, scale in enumerate(scales):
+        angle = -sum(angles)/2 + sum(angles[:pos]) + shift_angle
+        branches.append([scale, angle])
+    return branches

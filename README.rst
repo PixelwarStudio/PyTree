@@ -25,9 +25,11 @@ Usage
         # Create a Tree
         my_tree = Tree(
             pos = (0, 0, 0, -200),
-            scale = 0.7,
-            complexity = 2,
-            angle = (radians(30), 0),
+            branches=[
+                [0.5, rad(0)],
+                [0.5, rad(120)],
+                [0.5, rad(240)],
+            ],
             sigma = (0.2, 5/180)
         )
         my_tree.grow(times=12)
@@ -43,12 +45,6 @@ Usage
 
         # Show the tree
         im.show()
-
-Examples
---------
-See Examples_.
-
-.. _Examples: https://github.com/PixelwarStudio/PyTree/tree/master/examples
 
 Documentation
 -------------

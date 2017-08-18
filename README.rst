@@ -46,12 +46,6 @@ Usage
         # Show the tree
         im.show()
 
-Examples
---------
-See Examples_.
-
-.. _Examples: https://github.com/PixelwarStudio/PyTree/tree/master/examples
-
 Documentation
 -------------
 The documentation is hosted on Readthedocs_.

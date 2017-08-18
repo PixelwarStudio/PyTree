@@ -5,10 +5,10 @@ from math import atan2, cos, sin, pi, sqrt
 
 def convert_color(color):
     """Convert color tupel(r, g, b) to string("rgb({r}, {g}, {b}").
-    
+
     Args:
         color (tupel): RGB color. e.g. (134, 8, 45)
-    
+
     Returns:
         string: "rgb({r}, {g}, {b}"
     """
@@ -42,7 +42,10 @@ class Node(object):
                      sin(-angle)*distance+self.pos[1]))
 
     def get_node_angle(self, node):
-        """Get the angle beetween 2 nodes relative to the horizont
+        """Get the angle beetween 2 nodes relative to the horizont.
+
+        Args:
+            node (object): The other node.
 
         Returns:
             rad: The angle
@@ -50,9 +53,14 @@ class Node(object):
         return atan2(self.pos[0]-node.pos[0], self.pos[1]-node.pos[1]) - pi / 2
 
     def get_distance(self, node):
+        """Get the distance beetween 2 nodes
+
+        Args:
+            node (object): The other node.
+        """
         delta = (node.pos[0]-self.pos[0], node.pos[1]-self.pos[1])
         return sqrt(delta[0]**2+delta[1]**2)
-        
+
     def get_tuple(self):
         """Get the position of the node as tuple.
 

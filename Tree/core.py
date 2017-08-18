@@ -219,3 +219,14 @@ class Tree:
             object: The parent node.
         """
         return self.nodes[age][int(pos / self.comp)]
+
+def generate_branches(scales, angles, shift_angle):
+    """Generates branches with alternative system.
+
+    Returns:
+        scales (float/tuple): Indicating how the branch/es length/es develop/s from age to age.
+        angles (float/tuple): Holding the branch and shift angle in radians. e.g.(pi, p1/2)
+        shift_angle (int): Holding the rotation angle for all branches.
+    """
+    if len(scales) == len(angles) + 1:
+        pass

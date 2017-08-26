@@ -4,6 +4,7 @@ Module for creating trees
 from math import pi, log, sqrt
 from random import gauss
 from Tree.utils import Node
+from Tree.draw import SvgDrawer, PilDrawer, SUPPORTED_CANVAS
 
 class Tree:
     """The standard tree.
@@ -219,6 +220,11 @@ class Tree:
             object: The parent node.
         """
         return self.nodes[age][int(pos / self.comp)]
+
+    def draw_on(self, canvas, color=(255, 255, 255), thickness=1):
+        if canvas.__module__ in SUPPORTED_CANVAS:
+            drawer = SUPPORTED_CANVAS[canvas.__module__]
+            drawer(self, canvas, color, thickness).draw()
 
 def generate_branches(scales=None, angles=None, shift_angle=0):
     """Generates branches with alternative system.

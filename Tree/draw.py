@@ -69,7 +69,7 @@ class Drawer(object):
             for branch in level:
                 self._draw_branch(branch, color, thickness, age)
 
-class PillowDrawer(Drawer):
+class PilDrawer(Drawer):
     """A drawer class for drawing on PIL/Pillow images."""
     def _draw_branch(self, branch, color, thickness, age):
         ImageDraw.Draw(self.canvas).line(branch, color, thickness)
@@ -100,3 +100,8 @@ class SvgDrawer(Drawer):
         for _ in range(self.tree.age+1):
             self.group.append(self.canvas.add(svgwrite.container.Group()))
         Drawer.draw(self)
+
+SUPPORTED_CANVAS = {
+    "PIL.Image": PilDrawer,
+    "svgwrite.Drawing": SvgDrawer
+}

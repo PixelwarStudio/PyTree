@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="Tree",
-    version="0.2.1",
+    version="0.2.2",
     description="A package for creating and drawing trees",
     url="https://github.com/PixelwarStudio/PyTree",
     author="Pixelwar",

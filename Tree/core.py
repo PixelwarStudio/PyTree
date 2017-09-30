@@ -4,7 +4,7 @@ Module for creating trees
 from math import pi, log, sqrt
 from random import gauss
 from Tree.utils import Node
-from Tree.draw import SvgDrawer, PilDrawer, SUPPORTED_CANVAS
+from Tree.draw import SUPPORTED_CANVAS
 
 class Tree:
     """The standard tree.
@@ -198,7 +198,7 @@ class Tree:
 
         if times > 1:
             self.grow(times-1)
-    
+
     def draw_on(self, canvas, color=(255, 255, 255), thickness=1):
         """Draw the tree on a canvas.
 

@@ -81,7 +81,7 @@ class SvgDrawer(Drawer):
         group (list): Saves the groups created for every age.
     """
     def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1):
-        Drawer.__init__(self, tree, canvas, color, thickness)
+        super(SvgDrawer, self).__init__(tree, canvas, color, thickness)
         self.group = []
 
     def _draw_branch(self, branch, color, thickness, age):

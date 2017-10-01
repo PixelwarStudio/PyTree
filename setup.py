@@ -14,14 +14,15 @@ URL = "https://github.com/PixelwarStudio/PyTree"
 REQUIRED = [
     "Pillow",
     "svgwrite",
-    "setuptools"
+    "setuptools",
+    "click"
 ]
 
 setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
-    long_description=None,
+    long_description=LONG_DESCRIPTION,
     url=URL,
     author=AUTHOR,
     classifiers=[
@@ -34,5 +35,8 @@ setup(
     install_requires=REQUIRED,
     license="MIT",
     packages=["Tree"],
+    entry_points = {
+        "console_scripts": ["Tree-cli=Tree.cli:create_tree"],
+    },
     zip_safe=False
 )

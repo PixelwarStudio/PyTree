@@ -19,7 +19,6 @@ Usage
     from math import radians
     from PIL import Image
     from Tree.core import Tree
-    from Tree.draw import PillowDrawer
 
     if __name__ == "__main__":
         # Create a Tree
@@ -41,7 +40,7 @@ Usage
         im = Image.new("RGB", my_tree.get_size())
 
         # Draw the tree on the image
-        PillowDrawer(my_tree, im, (203, 40, 12)+(23, 90, 123), 10).draw()
+        my_tree.draw_on(im, (203, 40, 12)+(23, 90, 123), 10).draw())
 
         # Show the tree
         im.show()

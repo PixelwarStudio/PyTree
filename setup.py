@@ -9,7 +9,7 @@ NAME = Tree.__name__
 VERSION = Tree.__version__
 AUTHOR = Tree.__author__
 DESCRIPTION = "A package for creating and drawing trees"
-LONG_DESCRIPTION=readme()
+LONG_DESCRIPTION = readme()
 URL = "https://github.com/PixelwarStudio/PyTree"
 REQUIRED = [
     "Pillow",
@@ -36,7 +36,8 @@ setup(
     license="MIT",
     packages=["Tree"],
     entry_points = {
-        "console_scripts": ["Tree-cli=Tree.cli:create_tree"],
+        "console_scripts": ["tree-cli=Tree.cli:create_tree"],
     },
-    zip_safe=False
+    zip_safe=False,
+    include_package_data=True
 )

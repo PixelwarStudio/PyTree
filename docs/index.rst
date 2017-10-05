@@ -7,4 +7,5 @@ Welcome to FractalTree's documentation!
    
    installation.rst
    examples.rst
+   cli.rst
    reference/index.rst

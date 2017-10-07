@@ -2,12 +2,11 @@ __pycache__/
 docs/_build/
 dist
 build
-build.sh
-install.sh
 test.py
 FractalTree.egg-info
 Tree.egg-info
 launch.json
 *.png
+*.sh
 Pipfile
 Pipfile.lock

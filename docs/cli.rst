@@ -1,11 +1,14 @@
 Commandline
 ===========
+Usage
+-----
 .. code-block:: bash
 
-    $ tree-cli [OPTIONS]
+    tree-cli [OPTIONS]
 
 
-Options:
+**Options:**
+
 -l, --length     The start length of tree.
 -b, --branches   Add a branch with a scale and a angle.
 -s, --sigma      Add randomness to scale and angle.
@@ -16,3 +19,7 @@ Options:
 -t, --thickness  The start width of the first branch.
 --help           Show this message and exit.
 --show           Shows a image of the tree.
+
+
+Examples
+--------

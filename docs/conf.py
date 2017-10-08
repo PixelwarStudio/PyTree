@@ -157,6 +157,3 @@ texinfo_documents = [
      author, 'FractalTree', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

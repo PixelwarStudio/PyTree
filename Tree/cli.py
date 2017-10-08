@@ -24,6 +24,7 @@ def get_format(path):
 @click.option("--color1", "-c1", help="The starting color given as r g b", nargs=3, type=int, default=(255, 0, 255))
 @click.option("--color2", "-c2", help="The end color given as r g b", nargs=3, type=int, default=(255, 255, 255))
 @click.option("--thickness", "-t", help="The start width of the first branch.", type=int, default=5)
+
 def create_tree(length, branches, sigma, age, path, show, color1, color2, thickness):
     #Convert angles to radians
     branches = [[branch[0], radians(branch[1])] for branch in branches]
@@ -32,9 +33,22 @@ def create_tree(length, branches, sigma, age, path, show, color1, color2, thickn
     tree.grow(times=age)
     tree.move_in_rectangle()
 
-    im = Image.new("RGB", tree.get_size())
-    tree.draw_on(im, color1+color2, thickness)
-    im.show()
+    form = get_format(path) if path is not None else None
+
+    if show or form not in ("svg", None):
+        im = Image.new("RGB", tree.get_size())
+        tree.draw_on(im, color1+color2, thickness)
+
+    if form == "svg":
+        svg = svgwrite.Drawing(path)
+        tree.draw_on(svg, color1+color2, thickness)
+        svg.save()
+
+    if form not in ("svg", None):
+        im.save(path)
+
+    if show:
+        im.show()
 
 if __name__ == "__main__":
     create_tree()

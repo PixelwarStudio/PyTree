@@ -104,5 +104,5 @@ class SvgDrawer(Drawer):
 
 SUPPORTED_CANVAS = {
     "PIL.Image": PilDrawer,
-    "svgwrite.Drawing": SvgDrawer
+    "svgwrite.drawing": SvgDrawer
 }

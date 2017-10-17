@@ -70,7 +70,7 @@ class Drawer(object):
 
     def draw(self):
         """Draws the tree.
-        
+
         Args:
             ages (array): Contains the ages you want to draw.
         """

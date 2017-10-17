@@ -1,4 +1,5 @@
 core
 ====
 .. autoclass:: Tree.core.Tree
-   :members:
+    :special-members:
+    :members:

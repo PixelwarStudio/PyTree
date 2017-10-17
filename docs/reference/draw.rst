@@ -1,7 +1,8 @@
 draw
 ****
 .. autoclass:: Tree.draw.Drawer
-   :members: draw
+    :special-members:
+   :members:
 .. autoclass:: Tree.draw.PilDrawer
    :members:
 .. autoclass:: Tree.draw.SvgDrawer

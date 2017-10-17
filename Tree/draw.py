@@ -6,15 +6,20 @@ import svgwrite
 from Tree.utils import convert_color
 
 class Drawer(object):
-    """A generic class for drawing tree on acanvas.
+    """A generic class for drawing tree on acanvas."""
+    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1, ages=None):
+        """Constructor of drawer.
 
-    Attributes:
-        canvas: The canvas for drawing the tree.
+        Args:
         tree (object): The tree, which should drawn on canvas.
+        canvas (object): The canvas for drawing the tree.
         color (tupel): Color or gradient for coloring the tree.
         thickness (int): The start thickness of the tree.
-    """
-    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1, ages=None):
+        ages (array): Contains the ages you want to draw.
+
+        Returns:
+            int: The thickness of the branch/es
+        """
         self.canvas = canvas
         self.tree = tree
         self.color = color

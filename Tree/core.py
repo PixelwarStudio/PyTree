@@ -7,13 +7,7 @@ from Tree.utils import Node
 from Tree.draw import SUPPORTED_CANVAS
 
 class Tree:
-    """The standard tree.
-
-    Attributes:
-        length (float): The start length.
-        age (int): A counter increasing every time grow() is called by 1.
-        nodes (list): A 2d-list holding the grown nodes for every age.
-    """
+    """The standard tree."""
     def __init__(self, pos=(0, 0, 0, -100), branches=None, sigma=(0, 0)):
         """The contructor.
 

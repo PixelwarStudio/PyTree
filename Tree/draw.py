@@ -14,11 +14,12 @@ class Drawer(object):
         color (tupel): Color or gradient for coloring the tree.
         thickness (int): The start thickness of the tree.
     """
-    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1):
+    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1, ages=None):
         self.canvas = canvas
         self.tree = tree
         self.color = color
         self.thickness = thickness
+        self.ages = range(tree.age+1) if ages is None else ages
 
     def _get_thickness(self, age):
         """Get the thickness depending on age.
@@ -63,12 +64,17 @@ class Drawer(object):
         pass
 
     def draw(self):
-        """Draws the tree."""
+        """Draws the tree.
+        
+        Args:
+            ages (array): Contains the ages you want to draw.
+        """
         for age, level in enumerate(self.tree.get_branches()):
-            thickness = self._get_thickness(age)
-            color = self._get_color(age)
-            for branch in level:
-                self._draw_branch(branch, color, thickness, age)
+            if age in self.ages:
+                thickness = self._get_thickness(age)
+                color = self._get_color(age)
+                for branch in level:
+                    self._draw_branch(branch, color, thickness, age)
 
 class PilDrawer(Drawer):
     """A drawer class for drawing on PIL/Pillow images."""
@@ -98,7 +104,7 @@ class SvgDrawer(Drawer):
 
     def draw(self):
         self.group = []
-        for _ in range(self.tree.age+1):
+        for _ in self.ages:
             self.group.append(self.canvas.add(svgwrite.container.Group()))
         Drawer.draw(self)
 

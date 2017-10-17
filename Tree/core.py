@@ -199,7 +199,7 @@ class Tree:
         if times > 1:
             self.grow(times-1)
 
-    def draw_on(self, canvas, color=(255, 255, 255), thickness=1):
+    def draw_on(self, canvas, color=(255, 255, 255), thickness=1, ages=None):
         """Draw the tree on a canvas.
 
         Args:
@@ -209,7 +209,7 @@ class Tree:
         """
         if canvas.__module__ in SUPPORTED_CANVAS:
             drawer = SUPPORTED_CANVAS[canvas.__module__]
-            drawer(self, canvas, color, thickness).draw()
+            drawer(self, canvas, color, thickness, ages).draw()
 
     def __get_total_angle(self, angle, pos):
         """Get the total angle."""

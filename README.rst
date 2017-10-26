@@ -40,7 +40,7 @@ Usage
         im = Image.new("RGB", my_tree.get_size())
 
         # Draw the tree on the image
-        my_tree.draw_on(im, (203, 40, 12)+(23, 90, 123), 10).draw())
+        my_tree.draw_on(im, (203, 40, 12)+(23, 90, 123), 10)
 
         # Show the tree
         im.show()

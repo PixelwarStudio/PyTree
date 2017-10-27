@@ -198,7 +198,8 @@ class Tree:
 
         Args:
             canvas (object): The canvas, you want to draw the tree on. Supported Canvases: svgwrite.Drawing and PIL.Image (You can also add your custom libraries.)
-            color (tupel): Color or gradient for coloring the tree.
+            stem_color (tupel): Color or gradient for the steam of the tree.
+            leaf_color (tupel): Color for the leaf (= the color for last iteration).
             thickness (int): The start thickness of the tree.
         """
         if canvas.__module__ in SUPPORTED_CANVAS:

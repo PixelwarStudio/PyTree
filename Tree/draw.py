@@ -7,13 +7,14 @@ from Tree.utils import convert_color
 
 class Drawer(object):
     """A generic class for drawing tree on acanvas."""
-    def __init__(self, tree, canvas, color=(255, 255, 255), thickness=1, ages=None):
+    def __init__(self, tree, canvas, stem_color=(255,255,255), leaf_color=(230, 120, 34), thickness=1, ages=None):
         """Constructor of drawer.
 
         Args:
         tree (object): The tree, which should drawn on canvas.
         canvas (object): The canvas for drawing the tree.
-        color (tupel): Color or gradient for coloring the tree.
+        stem_color (tupel): Color or gradient for the steam of the tree.
+        leaf_color (tupel): Color for the leaf (= the color for last iteration).
         thickness (int): The start thickness of the tree.
         ages (array): Contains the ages you want to draw.
 
@@ -22,7 +23,8 @@ class Drawer(object):
         """
         self.canvas = canvas
         self.tree = tree
-        self.color = color
+        self.stem_color = stem_color
+        self.leaf_color = leaf_color
         self.thickness = thickness
         self.ages = range(tree.age+1) if ages is None else ages
 
@@ -46,14 +48,16 @@ class Drawer(object):
         Returns:
             tuple: (r, g, b)
         """
-        color = self.color
+        if age == self.tree.age:
+            return self.leaf_color
+        color = self.stem_color
         tree = self.tree
 
         if len(color) == 3:
             return color
 
         diff = [color[i+3]-color[i] for i in range(3)]
-        per_age = [diff[i]/tree.age for i in range(3)]
+        per_age = [diff[i]/(tree.age-1) for i in range(3)]
 
         return tuple([int(color[i]+per_age[i]*age) for i in range(3)])
 

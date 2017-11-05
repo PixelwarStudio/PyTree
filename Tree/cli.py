@@ -21,8 +21,9 @@ def get_format(path):
 @click.option("--age", "-a", help="Indicates how many time the tree should be iterated.",type=int, default=5)
 @click.option("--path", "-p", help="The path for saving the tree. Multiple formats supported e.g. svg.", default=None)
 @click.option("--show", help="Shows a image of the tree.", is_flag=True)
-@click.option("--color1", "-c1", help="The starting color given as r g b", nargs=3, type=int, default=(255, 0, 255))
-@click.option("--color2", "-c2", help="The end color given as r g b", nargs=3, type=int, default=(255, 255, 255))
+@click.option("--stem_color1", "-sc1", help="The stem start color given as r g b", nargs=3, type=int, default=(255, 0, 255))
+@click.option("--stem_color2", "-sc2", help="The stem end color given as r g b", nargs=3, type=int, default=(255, 0, 255))
+@click.option("--leaf_color", "-lc", help="The leaf color given as r g b", nargs=3, type=int, default=(255, 255, 255))
 @click.option("--thickness", "-t", help="The start width of the first branch.", type=int, default=5)
 
 def create_tree(length, branches, sigma, age, path, show, color1, color2, thickness):
@@ -37,11 +38,11 @@ def create_tree(length, branches, sigma, age, path, show, color1, color2, thickn
 
     if show or form not in ("svg", None):
         im = Image.new("RGB", tree.get_size())
-        tree.draw_on(im, color1+color2, thickness)
+        tree.draw_on(im, stem, thickness)
 
     if form == "svg":
         svg = svgwrite.Drawing(path)
-        tree.draw_on(svg, color1+color2, thickness)
+        tree.draw_on(svg, stem_color1+stem_color2, leaf_color, thickness)
         svg.save()
 
     if form not in ("svg", None):

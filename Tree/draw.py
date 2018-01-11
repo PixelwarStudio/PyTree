@@ -7,7 +7,7 @@ from Tree.utils import convert_color
 
 class Drawer(object):
     """A generic class for drawing tree on acanvas."""
-    def __init__(self, tree, canvas, stem_color=(255,255,255), leaf_color=(230, 120, 34), thickness=1, ages=None):
+    def __init__(self, tree, canvas, stem_color=(255, 255, 255), leaf_color=(230, 120, 34), thickness=1, ages=None):
         """Constructor of drawer.
 
         Args:

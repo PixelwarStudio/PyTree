@@ -29,7 +29,7 @@ class Tree:
         ]
 
     def get_rectangle(self):
-        """Get the coordinates of the rectangle, in which the tree can be put.
+        """Gets the coordinates of the rectangle, in which the tree can be put.
 
         Returns:
             tupel: (x1, y1, x2, y2)
@@ -197,8 +197,8 @@ class Tree:
         """Draw the tree on a canvas.
 
         Args:
-            canvas (object): The canvas, you want to draw the tree on. Supported Canvases: svgwrite.Drawing and PIL.Image (You can also add your custom libraries.)
-            stem_color (tupel): Color or gradient for the steam of the tree.
+            canvas (object): The canvas, you want to draw the tree on. Supported canvases: svgwrite.Drawing and PIL.Image (You can also add your custom libraries.)
+            stem_color (tupel): Color or gradient for the stem of the tree.
             leaf_color (tupel): Color for the leaf (= the color for last iteration).
             thickness (int): The start thickness of the tree.
         """

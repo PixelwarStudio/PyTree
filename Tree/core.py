@@ -34,10 +34,8 @@ class Tree:
         Returns:
             tupel: (x1, y1, x2, y2)
         """
-        min_x = self.pos[0]
-        max_x = self.pos[0]
-        min_y = self.pos[1]
-        max_y = self.pos[1]
+        min_x = max_x = self.pos[0]
+        min_y = max_y = self.pos[1]
         for age in self.nodes:
             for node in age:
                 if min_x > node.pos[0]:

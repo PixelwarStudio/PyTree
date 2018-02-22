@@ -10,3 +10,4 @@ launch.json
 *.sh
 Pipfile
 Pipfile.lock
+.vscode/

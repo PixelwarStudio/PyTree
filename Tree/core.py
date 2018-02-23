@@ -34,19 +34,16 @@ class Tree:
         Returns:
             tupel: (x1, y1, x2, y2)
         """
-        min_x = max_x = self.pos[0]
-        min_y = max_y = self.pos[1]
+        rec = [self.pos[0], self.pos[1]]*2
         for age in self.nodes:
             for node in age:
-                if min_x > node.pos[0]:
-                    min_x = node.pos[0]
-                if max_x < node.pos[0]:
-                    max_x = node.pos[0]
-                if min_y > node.pos[1]:
-                    min_y = node.pos[1]
-                if max_y < node.pos[1]:
-                    max_y = node.pos[1]
-        return (min_x, min_y, max_x, max_y)
+                # Check max/min for x/y coords
+                for i in range(2):
+                    if rec[0+i] > node.pos[i]:
+                        rec[0+i] = node.pos[i]
+                    elif rec[2+i] < node.pos[i]:
+                        rec[2+i] = node.pos[i]
+        return tuple(rec)
 
     def get_size(self):
         """Get the size of the tree.

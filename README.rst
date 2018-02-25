@@ -16,34 +16,36 @@ Usage
 
 .. code-block:: python
 
-    from math import radians
-    from PIL import Image
+    from math import pi, radians as rad
     from Tree.core import Tree
+    from PIL import Image
 
-    if __name__ == "__main__":
-        # Create a Tree
-        my_tree = Tree(
-            pos = (0, 0, 0, -200),
-            branches=[
-                [0.5, rad(0)],
-                [0.5, rad(120)],
-                [0.5, rad(240)],
-            ],
-            sigma = (0.2, 5/180)
+    branches = (
+        (.5, rad(-30)),
+        (.6, rad(30)),
+        (.4, rad(60))
+    )
+
+    def main():
+        tree = Tree(
+            pos=(0, 0, 0, -500),
+            branches=branches
         )
-        my_tree.grow(times=12)
-
+        
+        # Let the tree grow
+        tree.grow(10)
+        
         # Move the tree in the right position, so that the tree is completly in the image
-        rec = my_tree.move_in_rectangle()
+        tree.move_in_rectangle()
 
-        # Create a image with the dimensions of the tree
-        im = Image.new("RGB", my_tree.get_size())
-
-        # Draw the tree on the image
-        my_tree.draw_on(im, (203, 40, 12)+(23, 90, 123), 10)
-
-        # Show the tree
+        im = Image.new("RGB", tree.get_size(), (239, 239, 239))
+        tree.draw_on(im, (85, 25, 0, 128, 53, 21), (0, 62, 21), 10)
         im.show()
+
+    if __name__ == '__main__':
+        main()
+    
+..image::
 
 Documentation
 -------------

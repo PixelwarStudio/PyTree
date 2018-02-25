@@ -45,7 +45,7 @@ Usage
     if __name__ == '__main__':
         main()
     
-..image:: https://github.com/PixelwarStudio/PyTree/blob/master/images/example.png
+..image:: https://raw.githubusercontent.com/PixelwarStudio/PyTree/master/images/example.png
 
 Documentation
 -------------

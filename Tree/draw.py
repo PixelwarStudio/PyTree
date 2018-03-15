@@ -11,12 +11,12 @@ class Drawer(object):
         """Constructor of drawer.
 
         Args:
-        tree (object): The tree, which should drawn on canvas.
-        canvas (object): The canvas for drawing the tree.
-        stem_color (tupel): Color or gradient for the steam of the tree.
-        leaf_color (tupel): Color for the leaf (= the color for last iteration).
-        thickness (int): The start thickness of the tree.
-        ages (array): Contains the ages you want to draw.
+            tree (object): The tree, which should drawn on canvas.
+            canvas (object): The canvas for drawing the tree.
+            stem_color (tupel): Color or gradient for the steam of the tree.
+            leaf_color (tupel): Color for the leaf (= the color for last iteration).
+            thickness (int): The start thickness of the tree.
+            ages (array): Contains the ages you want to draw.
 
         Returns:
             int: The thickness of the branch/es

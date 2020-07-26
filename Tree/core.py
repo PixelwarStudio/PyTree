@@ -231,7 +231,7 @@ def generate_branches(scales=None, angles=None, shift_angle=0):
         shift_angle (float): Holding the rotation angle for all branches.
 
     Returns:
-        branches (2d-array): A array constits of arrays holding scale and angle for every branch.
+        branches (2d-array): A array consists of arrays holding scale and angle for every branch.
     """
     branches = []
     for pos, scale in enumerate(scales):

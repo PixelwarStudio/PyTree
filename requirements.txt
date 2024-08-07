@@ -1,5 +1,5 @@
 click==6.7
 sphinx_rtd_theme==0.2.4
-setuptools==65.5.1
+setuptools==70.0.0
 svgwrite==1.1.10
 Pillow==4.2.1
